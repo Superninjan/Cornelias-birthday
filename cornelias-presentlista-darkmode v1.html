@@ -158,8 +158,19 @@
       margin-top: 0.5rem;
     }
   </style>
+  <script>
+    function toggleDarkMode() {
+      document.body.classList.toggle('dark-mode');
+    }
+  </script>
 </head>
 <body>
+  <div class="switch-container">
+    <label class="switch-mode">
+      <input type="checkbox" onchange="toggleDarkMode()">
+      <span class="slider"></span>
+    </label>
+  </div>
   <div class="layout-container">
     <div class="presenter-container">
       <h2>🎁 Presentlista</h2>
