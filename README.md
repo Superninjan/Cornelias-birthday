@@ -112,48 +112,28 @@
 </head>
 <body>
 
-<!-- Fyra nya presenter -->
-<div class="present">
-  <strong>Ficklampa med stjärnmotiv</strong>
-  <em>Kategori: Utelek</em>
-  <p>Pris: 79 kr</p>
-  <img class="preview" src="https://m.media-amazon.com/images/I/71pLMPdRUwL._AC_SL1500_.jpg" alt="Ficklampa med stjärnmotiv">
-  <div class="checkbox-wrapper">
-    <input type="checkbox">
-    <label>Jag köper denna</label>
-  </div>
+<!-- Dark Mode-knapp -->
+<button id="toggleMode" onclick="toggleDarkMode()">🌗 Mörkt läge: Av</button>
+
+<!-- Admin-inloggning -->
+<div id="adminLogin">
+  <label for="adminPass"><strong>🔐 Admin lösenord</strong></label><br>
+  <input type="password" id="adminPass" placeholder="Lösenord">
+  <button onclick="checkPassword()">Logga in</button>
+  <p id="loginError" style="color:red;"></p>
 </div>
 
-<div class="present">
-  <strong>Stora bokstavsmagneter</strong>
-  <em>Kategori: Bokstäver</em>
-  <p>Pris: 129 kr</p>
-  <img class="preview" src="https://m.media-amazon.com/images/I/81DdnD2A+PL._AC_SL1500_.jpg" alt="Bokstavsmagneter">
-  <div class="checkbox-wrapper">
-    <input type="checkbox">
-    <label>Jag köper denna</label>
-  </div>
+<!-- Cornelias önskemål -->
+<div class="cornelia-info">
+  <h4 style="margin-top: 0; color: #ff69b4;">💡 Cornelia gillar</h4>
+  <ul style="padding-left: 1.2rem; margin-top: 0; font-size: 0.95rem;">
+    <li>Rymden 🚀</li>
+    <li>Böcker 📚</li>
+    <li>Bokstäver 🔠</li>
+    <li>Pysselsaker ✂️</li>
+    <li>Utelekar 🛝</li>
+    <li>Färgen rosa 💗 (men allt går bra)</li>
+  </ul>
+  <p style="margin-top: 1rem; font-size: 0.9rem;"><strong>Storlek kläder:</strong> 104</p>
+  <p style="font-size: 0.85rem; font-style: italic;">Vi gillar även ärvda saker – allt behöver inte vara nytt 🧸</p>
 </div>
-
-<div class="present">
-  <strong>Rymdpysselbok</strong>
-  <em>Kategori: Böcker</em>
-  <p>Pris: 59 kr</p>
-  <img class="preview" src="https://m.media-amazon.com/images/I/81DOqDQujqL._AC_SL1500_.jpg" alt="Rymdpysselbok">
-  <div class="checkbox-wrapper">
-    <input type="checkbox">
-    <label>Jag köper denna</label>
-  </div>
-</div>
-
-<div class="present">
-  <strong>Rosa hopprep med glitter</strong>
-  <em>Kategori: Utelek</em>
-  <p>Pris: 49 kr</p>
-  <img class="preview" src="https://m.media-amazon.com/images/I/61c0t7jPgiL._AC_SL1200_.jpg" alt="Rosa hopprep med glitter">
-  <div class="checkbox-wrapper">
-    <input type="checkbox">
-    <label>Jag köper denna</label>
-  </div>
-</div>
-
