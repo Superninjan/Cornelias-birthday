@@ -22,66 +22,6 @@
       color: var(--text-dark);
     }
 
-    body.dark-mode .present,
-    body.dark-mode .cornelia-info,
-    body.dark-mode #adminList,
-    body.dark-mode #adminLogin,
-    body.dark-mode #adminPanel {
-      background-color: #333;
-      color: var(--text-dark);
-      border-color: #999;
-    }
-
-    .layout-container {
-      display: flex;
-      flex-direction: row;
-      justify-content: center;
-      align-items: flex-start;
-      gap: 2rem;
-      flex-wrap: wrap;
-      margin-top: 4rem;
-    }
-
-    .presenter-container {
-      flex: 1;
-      min-width: 300px;
-      max-width: 600px;
-    }
-
-    .cornelia-container {
-      flex: 0 0 400px;
-    }
-
-    .present {
-      background-color: #fff8fb;
-      border: 2px dashed var(--accent);
-      padding: 1rem;
-      border-radius: 12px;
-      margin-bottom: 1rem;
-    }
-
-    .present.selected {
-      background-color: #eaffea;
-      border: 2px solid green;
-    }
-
-    #adminLogin {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      background: white;
-      border: 2px solid var(--accent);
-      padding: 0.5rem;
-      border-radius: 10px;
-      box-shadow: 0 0 6px var(--accent);
-      z-index: 10;
-      width: 200px;
-      height: auto;
-      max-height: 150px;
-      overflow: hidden;
-      font-size: 0.85rem;
-    }
-
     .switch-container {
       position: fixed;
       top: 20px;
@@ -95,6 +35,7 @@
       display: inline-block;
       width: 60px;
       height: 34px;
+      position: relative;
     }
 
     .switch-mode input {
@@ -135,18 +76,28 @@
       transform: translateX(26px);
     }
 
-    h2 {
-      text-align: center;
-      color: var(--accent);
-      margin-bottom: 1rem;
+    .layout-container {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: flex-start;
+      gap: 2rem;
+      flex-wrap: wrap;
+      margin-top: 4rem;
     }
-
+    .presenter-container {
+      flex: 1;
+      min-width: 300px;
+      max-width: 600px;
+    }
+    .cornelia-container {
+      flex: 0 0 400px;
+    }
     @media (max-width: 900px) {
       .layout-container {
         flex-direction: column;
         align-items: center;
       }
-
       .cornelia-container {
         order: -1;
       }
@@ -154,40 +105,59 @@
   </style>
 </head>
 <body>
-  <div class="switch-container">
-    <label class="switch-mode">
-      <input type="checkbox" id="darkToggle" onchange="toggleDarkMode()">
-      <span class="slider"></span>
-    </label>
-    <span id="modeLabel" style="margin-left: 12px; font-weight: bold; color: var(--accent); font-size: 0.9rem;">Dark Mode: Off</span>
-  </div>
+<!-- ...toppen av sidan... -->
+<div class="switch-container">
+  <label class="switch-mode">
+    <input type="checkbox" id="darkToggle" onchange="toggleDarkMode()">
+    <span class="slider"></span>
+  </label>
+  <span id="modeLabel" style="margin-left: 10px; font-weight: bold; font-size: 0.9rem; color: var(--accent);">
+    🌞 Light
+  </span>
+</div>
 
-  <div class="layout-container">
-    <div class="presenter-container">
-      <h2>🎁 Presentlista</h2>
-      <!-- Alla .present-divar ska läggas här -->
+<div class="layout-container">
+  <div class="presenter-container">
+    <h2 style="color: var(--accent); text-align: center; margin-bottom: 1rem;">🎁 Presentlista</h2>
+    <div class="present">
+      <h3>Ficklampa med stjärnmotiv</h3>
+      <p><em>Kategori:</em> Utelek<br><strong>Pris:</strong> 79 kr</p>
+      <img src="https://via.placeholder.com/150x100?text=Ficklampa" alt="Ficklampa med stjärnmotiv" style="width: 100%; max-width: 300px;">
     </div>
-
-    <div class="cornelia-container">
-      <h2>💖 Cornelia gillar</h2>
-      <!-- Cornelia gillar-rutan ska läggas här -->
+    <div class="present">
+      <h3>Stora bokstavsmagneter</h3>
+      <p><em>Kategori:</em> Bokstäver<br><strong>Pris:</strong> 129 kr</p>
+      <img src="https://via.placeholder.com/150x100?text=Bokstavsmagneter" alt="Bokstavsmagneter" style="width: 100%; max-width: 300px;">
+    </div>
+    <div class="present">
+      <h3>Rymdpysselbok</h3>
+      <p><em>Kategori:</em> Böcker<br><strong>Pris:</strong> 59 kr</p>
+      <img src="https://via.placeholder.com/150x100?text=Rymdpysselbok" alt="Rymdpysselbok" style="width: 100%; max-width: 300px;">
     </div>
   </div>
-
-  <div id="adminLogin">
-    <strong>🔐 Admin lösenord</strong><br>
-    <input type="password" placeholder="Lösenord">
-    <button>Logga in</button>
+  <div class="cornelia-container">
+    <h2 style="color: var(--accent); text-align: center; margin-bottom: 1rem;">💖 Cornelia gillar</h2>
+    <div class="cornelia-info" style="border: 2px solid var(--accent); padding: 1rem; border-radius: 10px; background-color: #fff0f5;">
+      <ul>
+        <li>🌌 Rymden</li>
+        <li>📚 Böcker</li>
+        <li>🔠 Bokstäver</li>
+        <li>🎨 Pysselsaker</li>
+        <li>🏃‍♀️ Utelekar</li>
+        <li>🌸 Färgen rosa (men allt går bra)</li>
+      </ul>
+      <p><strong>Storlek kläder:</strong> 104</p>
+      <p><em>Vi gillar även ärvda saker – allt behöver inte vara nytt 🧸</em></p>
+    </div>
   </div>
-
-  <script>
-    function toggleDarkMode() {
-      document.body.classList.toggle("dark-mode");
-      const checkbox = document.getElementById("darkToggle");
-      const label = document.getElementById("modeLabel");
-      checkbox.checked = document.body.classList.contains("dark-mode");
-      label.textContent = checkbox.checked ? "Dark Mode: On" : "Dark Mode: Off";
-    }
-  </script>
+</div>
+<!-- ...resten av sidan... -->
+<script>
+  function toggleDarkMode() {
+    const isDark = document.body.classList.toggle("dark-mode");
+    const label = document.getElementById("modeLabel");
+    label.textContent = isDark ? "🌙 Dark" : "🌞 Light";
+  }
+</script>
 </body>
 </html>
