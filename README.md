@@ -109,7 +109,7 @@
 <button id="toggleMode" onclick="toggleDarkMode()">🌗 Mörkt läge: Av</button>
 
 <!-- Admin-inloggning -->
-<div id="adminLogin" style="position: fixed; bottom: 20px; right: 20px; background: white; border: 2px solid var(--accent); padding: 0.5rem; border-radius: 10px; box-shadow: 0 0 6px var(--accent); z-index: 10; width: 180px; font-size: 0.85rem;">
+<div id="adminLogin" style="position: fixed; bottom: 20px; right: 20px; background: white; border: 2px solid var(--accent); padding: 0.5rem 0.8rem; border-radius: 10px; box-shadow: 0 0 6px var(--accent); z-index: 10; width: 180px; font-size: 0.85rem; height: auto; max-height: none; overflow: hidden;">
   <label for="adminPass"><strong>🔐 Admin lösenord</strong></label><br>
   <input type="password" id="adminPass" placeholder="Lösenord" style="width: 100%; margin-bottom: 0.5rem;">
   <button onclick="checkPassword()" style="width: 100%;">Logga in</button>
@@ -267,8 +267,8 @@
   adminBtn.onclick = logSavedPresents;
   document.body.appendChild(adminBtn);
 </script>
-<div id="adminList" style="max-width: 600px; margin: 4rem auto; background: #fff8fb; border: 2px dashed var(--accent); padding: 1rem; border-radius: 12px;">
-  <h3 style="margin-top: 0; color: var(--accent);">🎁 Valda presenter</h3>
+<div id="adminList" style="max-width: 600px; margin: 4rem auto; background: #ffe6f0; border: 2px dashed var(--accent); padding: 1.5rem; border-radius: 16px; box-shadow: 0 0 8px #ffb6d9;">
+  <h3 style="margin-top: 0; color: var(--accent); font-size: 1.6rem; font-weight: bold; text-shadow: 1px 1px 2px white, 0 0 10px #ff69b4;">🎁 Valda presenter 🎁</h3>
   <p style="font-size: 0.9rem; margin-bottom: 1rem;">Endast du ser detta – uppdateras automatiskt</p>
   <ul id="presentList"></ul>
 </div>
@@ -280,7 +280,7 @@
     const saved = JSON.parse(localStorage.getItem("presentList")) || [];
     saved.forEach(item => {
       const li = document.createElement("li");
-      li.textContent = `${item.name} — ${item.buyer}`;
+      li.innerHTML = `🛍️ <strong>${item.name}</strong> — <em>${item.buyer}</em>`;
       list.appendChild(li);
     });
   }
