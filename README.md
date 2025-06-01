@@ -110,10 +110,10 @@
 <button id="toggleMode" onclick="toggleDarkMode()">🌗 Mörkt läge: Av</button>
 
 <!-- Admin-inloggning -->
-<div id="adminLogin" style="position: fixed; bottom: 20px; left: 20px; background: white; border: 2px solid var(--accent); padding: 1rem; border-radius: 10px; box-shadow: 0 0 6px var(--accent); z-index: 10; width: max-content;">
+<div id="adminLogin" style="position: fixed; bottom: 20px; left: 20px; background: white; border: 2px solid var(--accent); padding: 1rem; border-radius: 10px; box-shadow: 0 0 6px var(--accent); z-index: 10; width: 220px; max-height: none;">
   <label for="adminPass"><strong>🔐 Admin lösenord</strong></label><br>
-  <input type="password" id="adminPass" placeholder="Lösenord">
-  <button onclick="checkPassword()">Logga in</button>
+  <input type="password" id="adminPass" placeholder="Lösenord" style="width: 100%; margin-bottom: 0.5rem;">
+  <button onclick="checkPassword()" style="width: 100%;">Logga in</button>
   <p id="loginError" style="color:red;"></p>
 </div>
 
@@ -214,7 +214,10 @@
 
         namnInput.addEventListener('blur', function () {
           const namn = namnInput.value.trim();
-          label.textContent = namn ? `Vald (${namn})` : 'Vald (anonym)';
+          const buyerName = namn ? namn : 'anonym';
+          label.textContent = `Vald (${buyerName})`;
+          saveToLocal(present.querySelector('strong').textContent, buyerName);
+          updateAdminList();
           namnInput.remove();
         });
 
@@ -264,6 +267,25 @@
   adminBtn.style.zIndex = 20;
   adminBtn.onclick = logSavedPresents;
   document.body.appendChild(adminBtn);
+</script>
+<div id="adminList" style="max-width: 600px; margin: 4rem auto; background: #fff8fb; border: 2px dashed var(--accent); padding: 1rem; border-radius: 12px;">
+  <h3 style="margin-top: 0; color: var(--accent);">🎁 Valda presenter</h3>
+  <ul id="presentList"></ul>
+</div>
+
+<script>
+  function updateAdminList() {
+    const list = document.getElementById("presentList");
+    list.innerHTML = "";
+    const saved = JSON.parse(localStorage.getItem("presentList")) || [];
+    saved.forEach(item => {
+      const li = document.createElement("li");
+      li.textContent = `${item.name} — ${item.buyer}`;
+      list.appendChild(li);
+    });
+  }
+
+  window.addEventListener("load", updateAdminList);
 </script>
 </body>
 </html>
