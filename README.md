@@ -150,6 +150,14 @@
       <p><em>Vi gillar även ärvda saker – allt behöver inte vara nytt 🧸</em></p>
     </div>
   </div>
+  <div class="guest-note" style="flex: 1; max-width: 500px; margin-top: 2rem;">
+    <h2 style="color: var(--accent); text-align: center;">📝 Gästlapp</h2>
+    <div style="background: #fffaf0; border: 2px dashed var(--accent); padding: 1rem; border-radius: 10px;">
+      <label for="guestMessage" style="display: block; margin-bottom: 0.5rem; font-weight: bold;">Jag tänkte köpa:</label>
+      <textarea id="guestMessage" rows="4" style="width: 100%; padding: 0.5rem; border-radius: 5px; border: 1px solid #ccc;"></textarea>
+      <button onclick="submitGuestMessage()" style="margin-top: 0.5rem; background-color: var(--accent); color: white; border: none; padding: 0.5rem 1rem; border-radius: 5px; cursor: pointer;">Skicka</button>
+    </div>
+  </div>
 </div>
 <!-- ...resten av sidan... -->
 <script>
@@ -158,6 +166,17 @@
     const label = document.getElementById("modeLabel");
     label.textContent = isDark ? "🌙 Dark" : "🌞 Light";
   }
+function submitGuestMessage() {
+  const message = document.getElementById('guestMessage').value;
+  if (message.trim()) {
+    alert(`Tack! Din notering är mottagen:
+
+"${message}"`);
+    document.getElementById('guestMessage').value = '';
+  } else {
+    alert('Skriv vad du tänkte köpa innan du skickar.');
+  }
+}
 </script>
 </body>
 </html>
