@@ -117,9 +117,9 @@
 </div>
 
 <!-- Cornelias önskemål -->
-<div class="cornelia-info">
-  <h4 style="margin-top: 0; color: #ff69b4;">💡 Cornelia gillar</h4>
-  <ul style="padding-left: 1.2rem; margin-top: 0; font-size: 0.95rem;">
+<div class="cornelia-info" style="margin: 0 auto; text-align: center;">
+  <h2 style="margin-top: 0; color: #ff69b4; font-size: 1.8rem; font-weight: bold; text-shadow: 1px 1px 2px white, 0 0 15px #ff69b4;">🎀 Cornelia gillar 🎀</h2>
+  <ul style="padding-left: 0; margin-top: 0; font-size: 0.95rem; list-style-position: inside; display: inline-block; text-align: left;">
     <li>Rymden 🚀</li>
     <li>Böcker 📚</li>
     <li>Bokstäver 🔠</li>
