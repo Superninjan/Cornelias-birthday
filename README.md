@@ -102,16 +102,7 @@
       z-index: 5;
     }
   </style>
-<script>
-  window.onload = function () {
-    if (!sessionStorage.getItem("presentUser")) {
-      let namn = prompt("Vem är du som spanar på present till Cornelia?");
-      if (namn && namn.trim() !== "") {
-        sessionStorage.setItem("presentUser", namn.trim());
-      }
-    }
-  };
-</script>
+
 </head>
 <body>
 
@@ -204,6 +195,38 @@
   }
 
   document.querySelectorAll('.checkbox-wrapper input[type="checkbox"]').forEach(function(checkbox) {
+    const label = checkbox.nextElementSibling;
+    let namnInput;
+
+    // Lägg till namninput när man kryssar i
+    checkbox.addEventListener('change', function () {
+      const present = checkbox.closest('.present');
+      if (checkbox.checked) {
+        namnInput = document.createElement('input');
+        namnInput.type = 'text';
+        namnInput.placeholder = 'Skriv ditt namn';
+        namnInput.style.marginTop = '0.5rem';
+        namnInput.style.padding = '0.3rem';
+        namnInput.style.border = '1px solid #ccc';
+        namnInput.style.borderRadius = '5px';
+
+        checkbox.parentElement.appendChild(namnInput);
+
+        namnInput.addEventListener('blur', function () {
+          const namn = namnInput.value.trim();
+          label.textContent = namn ? `Vald (${namn})` : 'Vald (anonym)';
+          namnInput.remove();
+        });
+
+        present.style.opacity = '0.5';
+        document.body.appendChild(present);
+      } else {
+        present.style.opacity = '1';
+        label.textContent = 'Jag köper denna';
+        document.body.insertBefore(present, document.querySelector('.cornelia-info'));
+        if (namnInput) namnInput.remove();
+      }
+    });
     checkbox.addEventListener('change', function() {
       const present = checkbox.closest('.present');
       if (checkbox.checked) {
@@ -217,6 +240,30 @@
       }
     });
   });
+
+  // Spara val i localStorage
+  function saveToLocal(presentName, buyer) {
+    let saved = JSON.parse(localStorage.getItem("presentList")) || [];
+    saved = saved.filter(item => item.name !== presentName);
+    saved.push({ name: presentName, buyer: buyer });
+    localStorage.setItem("presentList", JSON.stringify(saved));
+  }
+
+  // Visa sparade val i konsolen (kan ersättas med adminpanel)
+  function logSavedPresents() {
+    const saved = JSON.parse(localStorage.getItem("presentList")) || [];
+    console.table(saved);
+  }
+
+  // Lägg till knapp för admin att visa val
+  const adminBtn = document.createElement("button");
+  adminBtn.textContent = "📋 Visa alla val";
+  adminBtn.style.position = "fixed";
+  adminBtn.style.bottom = "20px";
+  adminBtn.style.right = "20px";
+  adminBtn.style.zIndex = 20;
+  adminBtn.onclick = logSavedPresents;
+  document.body.appendChild(adminBtn);
 </script>
 </body>
 </html>
