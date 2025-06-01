@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html lang="sv">
 <head>
   <meta charset="UTF-8">
@@ -147,9 +146,51 @@
       margin-bottom: 1rem;
       background-color: #fff;
     }
+
+    .present .title {
+      font-weight: bold;
+    }
+
+    .present .category,
+    .present .price {
+      font-style: italic;
+      display: block;
+      margin-top: 0.5rem;
+    }
   </style>
 </head>
 <body>
-<!-- HEAD OCH INLEDNING FIXAD -->
+  <div class="layout-container">
+    <div class="presenter-container">
+      <h2>🎁 Presentlista</h2>
+      <div class="present">
+        <div class="title">LEGO Friends Hus</div>
+        <div class="category">Kategori: LEGO</div>
+        <div class="price">Pris: 299 kr</div>
+        <img src="https://example.com/lego.jpg" alt="LEGO Friends Hus" style="width: 100px;">
+      </div>
+      <div class="present">
+        <div class="title">Rosa badanka med glitter</div>
+        <div class="category">Kategori: Badleksak</div>
+        <div class="price">Pris: 49 kr</div>
+        <img src="https://example.com/duck.jpg" alt="Rosa badanka med glitter" style="width: 100px;">
+      </div>
+    </div>
+    <div class="cornelia-container">
+      <h2>💖 Cornelia gillar</h2>
+      <div class="cornelia-info present">
+        <ul>
+          <li>🌌 Rymden</li>
+          <li>📚 Böcker</li>
+          <li>🔠 Bokstäver</li>
+          <li>🎨 Pysselsaker</li>
+          <li>🏃‍♀️ Utelekar</li>
+          <li>🌸 Färgen rosa (men allt går bra)</li>
+        </ul>
+        <p><strong>Storlek kläder:</strong> 104</p>
+        <p><em>Vi gillar även ärvda saker – allt behöver inte vara nytt 🧸</em></p>
+      </div>
+    </div>
+  </div>
 </body>
 </html>
