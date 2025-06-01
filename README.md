@@ -4,6 +4,48 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Cornelias Presentlista</title>
   <style>
+    .switch-mode {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      display: inline-block;
+      width: 60px;
+      height: 34px;
+      z-index: 10;
+    }
+    .switch-mode input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+    .slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: #ccc;
+      transition: .4s;
+      border-radius: 34px;
+    }
+    .slider:before {
+      position: absolute;
+      content: "";
+      height: 26px;
+      width: 26px;
+      left: 4px;
+      bottom: 4px;
+      background-color: white;
+      transition: .4s;
+      border-radius: 50%;
+    }
+    input:checked + .slider {
+      background-color: var(--accent);
+    }
+    input:checked + .slider:before {
+      transform: translateX(26px);
+    }
     :root {
       --accent: #ff69b4;
       --background-light: #fff0f6;
@@ -106,10 +148,13 @@
 <body>
 
 <!-- Dark Mode-knapp -->
-<button id="toggleMode" onclick="toggleDarkMode()">🌗 Mörkt läge: Av</button>
+<label class="switch-mode">
+  <input type="checkbox" id="darkToggle" onchange="toggleDarkMode()">
+  <span class="slider"></span>
+</label>
 
 <!-- Admin-inloggning -->
-<div id="adminLogin" style="position: fixed; bottom: 20px; right: 20px; background: white; border: 2px solid var(--accent); padding: 0.5rem 0.8rem; border-radius: 10px; box-shadow: 0 0 6px var(--accent); z-index: 10; width: 180px; font-size: 0.85rem; height: auto; max-height: none; overflow: hidden;">
+<div id="adminLogin" style="position: fixed; bottom: 20px; right: 20px; background: white; border: 2px solid var(--accent); padding: 0.5rem; border-radius: 10px; box-shadow: 0 0 6px var(--accent); z-index: 10; width: 200px; height: auto; max-height: 150px; overflow: hidden; font-size: 0.85rem;">
   <label for="adminPass"><strong>🔐 Admin lösenord</strong></label><br>
   <input type="password" id="adminPass" placeholder="Lösenord" style="width: 100%; margin-bottom: 0.5rem;">
   <button onclick="checkPassword()" style="width: 100%;">Logga in</button>
@@ -178,10 +223,10 @@
 
 <script>
   function toggleDarkMode() {
-    document.body.classList.toggle("dark-mode");
-    const btn = document.getElementById("toggleMode");
-    btn.textContent = document.body.classList.contains("dark-mode") ? "🌗 Mörkt läge: På" : "🌗 Mörkt läge: Av";
-  }
+  document.body.classList.toggle("dark-mode");
+  const checkbox = document.getElementById("darkToggle");
+  checkbox.checked = document.body.classList.contains("dark-mode");
+}
 
   function checkPassword() {
     const input = document.getElementById("adminPass").value;
@@ -201,7 +246,11 @@
     checkbox.addEventListener('change', function () {
       const present = checkbox.closest('.present');
       if (checkbox.checked) {
-        namnInput = document.createElement('input');
+        // Ta bort tidigare inputs om de finns
+        const oldInput = checkbox.parentElement.querySelector('input[type="text"]');
+        if (oldInput) oldInput.remove();
+
+        const namnInput = document.createElement('input');
         namnInput.type = 'text';
         namnInput.placeholder = 'Skriv ditt namn';
         namnInput.style.marginTop = '0.5rem';
@@ -215,10 +264,44 @@
           const namn = namnInput.value.trim();
           const buyerName = namn ? namn : 'anonym';
           label.textContent = `Vald (${buyerName})`;
+label.style.color = 'green';
+          checkbox.disabled = true;
           saveToLocal(present.querySelector('strong').textContent, buyerName);
           updateAdminList();
           namnInput.remove();
+
+          // Skapa ändra-knapp
+          const ändraKnapp = document.createElement('button');
+          ändraKnapp.textContent = '✏️ Ändra';
+          ändraKnapp.style.marginLeft = '1rem';
+          ändraKnapp.style.padding = '0.2rem 0.6rem';
+          ändraKnapp.style.borderRadius = '5px';
+          ändraKnapp.style.border = '1px solid #ccc';
+          ändraKnapp.style.cursor = 'pointer';
+
+          ändraKnapp.addEventListener('click', function () {
+            checkbox.disabled = false;
+            checkbox.checked = false;
+            label.textContent = 'Jag köper denna';
+            ändraKnapp.remove();
+            present.style.opacity = '1';
+            localStorage.setItem("presentList", JSON.stringify(saved.filter(item => item.name !== present.querySelector('strong').textContent)));
+            updateAdminList();
+          });
+
+          label.parentElement.appendChild(ändraKnapp);
         });
+
+        present.style.opacity = '0.5';
+        document.body.appendChild(present);
+      } else {
+        present.style.opacity = '1';
+        label.textContent = 'Jag köper denna';
+        const oldInput = checkbox.parentElement.querySelector('input[type="text"]');
+        if (oldInput) oldInput.remove();
+        document.body.insertBefore(present, document.querySelector('.cornelia-info'));
+      }
+    });
 
         present.style.opacity = '0.5';
         document.body.appendChild(present);
