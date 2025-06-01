@@ -1,180 +1,179 @@
 <!DOCTYPE html>
 <html lang="sv">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Presenter till Cornelias kalas</title>
   <style>
     body {
       font-family: sans-serif;
-      margin: auto;
+      margin: 0;
       padding: 2rem;
-      max-width: 600px;
-      background-image: url('https://images.unsplash.com/photo-1604079628040-943b1b04fd56?auto=format&fit=crop&w=1950&q=80');
+      background: url('https://cdn.pixabay.com/photo/2013/07/18/10/56/space-164595_1280.jpg') no-repeat center center fixed;
       background-size: cover;
-      background-position: center;
-      background-attachment: fixed;
       color: #fff;
       position: relative;
       overflow-x: hidden;
     }
     h1 {
-      color: #90ee90;
+      color: #ffb6f2;
+      text-align: center;
     }
     .present {
-      background-color: rgba(255, 255, 255, 0.85);
+      background-color: rgba(255, 255, 255, 0.9);
       color: #000;
-      border: 1px solid #ccc;
-      border-radius: 8px;
+      border-radius: 10px;
       padding: 1rem;
       margin-bottom: 1rem;
     }
     .booked {
-      background-color: rgba(200, 200, 200, 0.7);
-      color: #666;
+      background-color: rgba(220, 220, 220, 0.8);
+      color: #555;
       text-decoration: line-through;
     }
-    #adminSection {
-      margin-top: 2rem;
-      padding-top: 1rem;
-      border-top: 1px solid #ccc;
-      display: none;
-      background-color: rgba(255, 255, 255, 0.9);
+    #adminSection, #adminLogin {
+      background-color: rgba(255, 255, 255, 0.95);
       color: #000;
       padding: 1rem;
-      border-radius: 8px;
+      border-radius: 10px;
+      margin-top: 2rem;
     }
     #adminLogin {
-      background-color: rgba(255, 255, 255, 0.9);
-      color: #000;
-      padding: 1rem;
-      border-radius: 8px;
-      margin-top: 1rem;
+      position: fixed;
+      top: 10px;
+      right: 10px;
+      width: 200px;
     }
     input, button {
+      width: 100%;
       margin-top: 0.5rem;
       padding: 0.5rem;
       font-size: 1rem;
     }
+    .preview {
+      width: 100%;
+      max-height: 150px;
+      object-fit: contain;
+      margin-top: 0.5rem;
+    }
     .unicorn {
       position: absolute;
       width: 100px;
-      top: 10%;
-      animation: float 10s infinite ease-in-out;
-    }
-    .unicorn:nth-child(1) {
-      left: -120px;
-      animation-delay: 0s;
-    }
-    .unicorn:nth-child(2) {
-      left: -100px;
-      top: 30%;
-      animation-delay: 5s;
-    }
-    .unicorn:nth-child(3) {
-      left: -140px;
-      top: 60%;
-      animation-delay: 2s;
+      animation: float 20s linear infinite;
     }
     @keyframes float {
-      0% {
-        transform: translateX(0);
-        opacity: 0;
-      }
-      10% {
-        opacity: 1;
-      }
-      90% {
-        opacity: 1;
-      }
-      100% {
-        transform: translateX(140vw);
-        opacity: 0;
-      }
+      0% { transform: translateX(-150px); top: 10%; }
+      50% { top: 60%; }
+      100% { transform: translateX(110vw); top: 30%; }
     }
   </style>
 </head>
 <body>
-  <img src="https://media.giphy.com/media/26u4nJPf0JtQPdStq/giphy.gif" class="unicorn" />
-  <img src="https://media.giphy.com/media/3oEduKzmWQJpQeB1SM/giphy.gif" class="unicorn" />
-  <img src="https://media.giphy.com/media/YTbZzCkRQCEJa/giphy.gif" class="unicorn" />
+  <!-- Unicorns -->
+  <img src="https://media.giphy.com/media/3oEduKzmWQJpQeB1SM/giphy.gif" class="unicorn" style="top:5%; left:-120px; animation-delay: 0s;">
+  <img src="https://media.giphy.com/media/YTbZzCkRQCEJa/giphy.gif" class="unicorn" style="top:30%; left:-180px; animation-delay: 5s;">
+  <img src="https://media.giphy.com/media/26u4nJPf0JtQPdStq/giphy.gif" class="unicorn" style="top:50%; left:-200px; animation-delay: 10s;">
+  <img src="https://media.giphy.com/media/W3KijyP3U8K9G/giphy.gif" class="unicorn" style="top:70%; left:-150px; animation-delay: 15s;">
 
   <h1>Presenter till Cornelias kalas 🎉🦄</h1>
-
   <div id="presentList"></div>
 
   <div id="adminLogin">
-    <h3>Admininloggning</h3>
-    <input type="password" id="adminPass" placeholder="Lösenord" />
+    <input type="password" id="adminPass" placeholder="Lösenord">
     <button onclick="checkPassword()">Logga in</button>
     <p id="loginError" style="color:red;"></p>
   </div>
 
-  <div id="adminSection">
-    <h3>Admin: Lägg till ny present</h3>
+  <div id="adminSection" style="display:none;">
+    <h3>Lägg till ny present</h3>
     <form id="addForm">
-      <input type="text" id="presentName" placeholder="Presentens namn" required />
-      <input type="text" id="presentDesc" placeholder="Beskrivning (valfritt)" />
+      <input type="text" id="presentName" placeholder="Presentens namn" required>
+      <input type="text" id="presentDesc" placeholder="Kategori (t.ex. LEGO, pyssel, kläder)">
+      <input type="text" id="presentPrice" placeholder="Pris i kr">
+      <input type="url" id="presentImg" placeholder="Bildlänk (valfritt)">
       <button type="submit">Lägg till present</button>
     </form>
   </div>
 
-  <script>
-    const presentList = document.getElementById('presentList');
-    const addForm = document.getElementById('addForm');
-    const adminSection = document.getElementById('adminSection');
-    const loginError = document.getElementById('loginError');
-    let presents = JSON.parse(localStorage.getItem('presents') || '[]');
+<script>
+const presentList = document.getElementById('presentList');
+const addForm = document.getElementById('addForm');
+const adminSection = document.getElementById('adminSection');
+const loginError = document.getElementById('loginError');
+let presents = JSON.parse(localStorage.getItem('presents') || '[]');
 
-    function renderPresents() {
-      presentList.innerHTML = '';
-      presents.forEach((p, i) => {
-        const div = document.createElement('div');
-        div.className = 'present' + (p.booked ? ' booked' : '');
-        div.innerHTML = `
-          <strong>${p.name}</strong><br/>
-          <small>${p.desc}</small><br/>
-          <label>
-            <input type="checkbox" ${p.booked ? 'checked disabled' : ''} onchange="bookPresent(${i})" />
-            ${p.booked ? 'Bokad' : 'Jag köper denna'}
-          </label>
-        `;
-        presentList.appendChild(div);
-      });
+if (presents.length === 0) {
+  presents = [
+    {
+      name: 'LEGO Friends Hus',
+      desc: 'LEGO',
+      price: '299',
+      img: 'https://m.media-amazon.com/images/I/71sFCDzN6bL._AC_SL1500_.jpg',
+      booked: false
+    },
+    {
+      name: 'Rosa badanka med glitter',
+      desc: 'Badleksak',
+      price: '49',
+      img: 'https://www.partyhallen.se/images/0.81337700_1662979626_badanka-rosa-med-glitter.jpg',
+      booked: false
     }
+  ];
+}
 
-    function bookPresent(index) {
-      presents[index].booked = true;
-      saveAndRender();
-    }
+function renderPresents() {
+  presentList.innerHTML = '';
+  presents.forEach((p, i) => {
+    const div = document.createElement('div');
+    div.className = 'present' + (p.booked ? ' booked' : '');
+    div.innerHTML = `
+      <strong>${p.name}</strong><br/>
+      <em>${p.desc}</em><br/>
+      ${p.price ? `<p>Pris: ${p.price} kr</p>` : ''}
+      ${p.img ? `<img src="${p.img}" class="preview" alt="${p.name}" />` : ''}<br/>
+      <label>
+        <input type="checkbox" ${p.booked ? 'checked disabled' : ''} onchange="bookPresent(${i})" />
+        ${p.booked ? 'Bokad' : 'Jag köper denna'}
+      </label>
+    `;
+    presentList.appendChild(div);
+  });
+}
 
-    addForm.onsubmit = (e) => {
-      e.preventDefault();
-      const name = document.getElementById('presentName').value.trim();
-      const desc = document.getElementById('presentDesc').value.trim();
-      if (name) {
-        presents.push({ name, desc, booked: false });
-        saveAndRender();
-        addForm.reset();
-      }
-    }
+function bookPresent(index) {
+  presents[index].booked = true;
+  saveAndRender();
+}
 
-    function saveAndRender() {
-      localStorage.setItem('presents', JSON.stringify(presents));
-      renderPresents();
-    }
+addForm.onsubmit = (e) => {
+  e.preventDefault();
+  const name = document.getElementById('presentName').value.trim();
+  const desc = document.getElementById('presentDesc').value.trim();
+  const price = document.getElementById('presentPrice').value.trim();
+  const img = document.getElementById('presentImg').value.trim();
+  if (name) {
+    presents.push({ name, desc, price, img, booked: false });
+    saveAndRender();
+    addForm.reset();
+  }
+}
 
-    function checkPassword() {
-      const input = document.getElementById('adminPass').value;
-      if (input === 'cornelia123') {
-        adminSection.style.display = 'block';
-        document.getElementById('adminLogin').style.display = 'none';
-      } else {
-        loginError.textContent = 'Fel lösenord';
-      }
-    }
+function saveAndRender() {
+  localStorage.setItem('presents', JSON.stringify(presents));
+  renderPresents();
+}
 
-    renderPresents();
-  </script>
+function checkPassword() {
+  const input = document.getElementById('adminPass').value;
+  if (input === 'cornelia123') {
+    adminSection.style.display = 'block';
+    document.getElementById('adminLogin').style.display = 'none';
+  } else {
+    loginError.textContent = 'Fel lösenord';
+  }
+}
+
+renderPresents();
+</script>
 </body>
 </html>
