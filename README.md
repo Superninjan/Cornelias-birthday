@@ -119,7 +119,7 @@
 <button id="toggleMode" onclick="toggleDarkMode()">🌗 Mörkt läge: Av</button>
 
 <!-- Admin-inloggning -->
-<div id="adminLogin" style="position: fixed; bottom: 20px; left: 20px; background: white; border: 2px solid var(--accent); padding: 1rem; border-radius: 10px; box-shadow: 0 0 6px var(--accent); z-index: 10;">
+<div id="adminLogin" style="position: fixed; bottom: 20px; left: 20px; background: white; border: 2px solid var(--accent); padding: 1rem; border-radius: 10px; box-shadow: 0 0 6px var(--accent); z-index: 10; width: max-content;">
   <label for="adminPass"><strong>🔐 Admin lösenord</strong></label><br>
   <input type="password" id="adminPass" placeholder="Lösenord">
   <button onclick="checkPassword()">Logga in</button>
