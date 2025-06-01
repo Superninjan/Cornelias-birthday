@@ -15,11 +15,47 @@
       background-color: #fff0f5;
       margin: 0;
       padding: 1rem;
+      transition: background-color 0.3s ease, color 0.3s ease;
     }
 
     body.dark-mode {
-      background-color: var(--background-dark);
+      background-color: #121212;
       color: var(--text-dark);
+    }
+
+    body.dark-mode .cornelia-info,
+    body.dark-mode .guest-note div,
+    body.dark-mode .suggestion-note div,
+    body.dark-mode .additional-suggestion div,
+    body.dark-mode #adminLogin,
+    body.dark-mode #adminPanel,
+    body.dark-mode .present {
+      background-color: #2a2a2a;
+      color: var(--text-dark);
+      border-color: #555;
+    }
+
+    body.dark-mode button {
+      background-color: #444 !important;
+      color: var(--text-dark) !important;
+    }
+
+    body.dark-mode input,
+    body.dark-mode textarea {
+      background-color: #333;
+      color: var(--text-dark);
+      border-color: #666;
+    }
+
+    body.dark-mode .cornelia-info,
+    body.dark-mode .guest-note div,
+    body.dark-mode .suggestion-note div,
+    body.dark-mode .additional-suggestion div,
+    body.dark-mode #adminLogin,
+    body.dark-mode #adminPanel {
+      background-color: #1e1e1e;
+      color: var(--text-dark);
+      border-color: #555;
     }
 
     .switch-container {
@@ -111,19 +147,13 @@
     <input type="checkbox" id="darkToggle" onchange="toggleDarkMode()">
     <span class="slider"></span>
   </label>
-  <span id="modeLabel" style="margin-left: 10px; font-weight: bold; font-size: 0.9rem; color: var(--accent);">
-    🌞 Light
-  </span>
+  <span id="modeLabel" style="margin-left: 10px; font-weight: bold; font-size: 0.9rem; color: var(--accent);">🌞 Light</span>
 </div>
 
 <div class="layout-container">
   <div class="presenter-container">
-    <h2 style="color: var(--accent); text-align: center; margin-bottom: 1rem;">🎁 Presentlista</h2>
-    <div class="present">
-  <h3 contenteditable="true">$1</h3>
-  $1
-  <button onclick="removePresent(this)" style="background-color: #e74c3c; color: white; border: none; padding: 0.3rem 0.5rem; border-radius: 5px; cursor: pointer; margin-top: 0.5rem;">Ta bort</button>
-</div>
+  <h2 style="color: var(--accent); text-align: center; margin-bottom: 1rem;">🎁 Presentlista</h2>
+  <div id="presentList"></div>
     <div class="present">
   <h3 contenteditable="true">$1</h3>
   $1
@@ -208,11 +238,40 @@
 </div>
 
 <script>
+const defaultPresents = [
+  { name: "LEGO Friends Hus", category: "LEGO", price: "299 kr", image: "https://via.placeholder.com/300x200?text=LEGO+Friends" },
+  { name: "Rosa badanka med glitter", category: "Badleksak", price: "49 kr", image: "https://via.placeholder.com/300x200?text=Badanka" },
+  { name: "Pyssellåda med enhörningar", category: "Pyssel", price: "89 kr", image: "https://via.placeholder.com/300x200?text=Pyssellåda" }
+];
+
+function renderPresents() {
+  const container = document.getElementById("presentList");
+  container.innerHTML = "";
+  defaultPresents.forEach(p => {
+    const div = document.createElement("div");
+    div.className = "present";
+    div.innerHTML = `
+      <h3>\${p.name}</h3>
+      <p><em>Kategori:</em> \${p.category}<br><strong>Pris:</strong> \${p.price}</p>
+      <img src="\${p.image}" alt="\${p.name}" style="width: 100%; max-width: 300px;">
+      <button onclick="removePresent(this)" style="background-color: #e74c3c; color: white; border: none; padding: 0.3rem 0.5rem; border-radius: 5px; cursor: pointer; margin-top: 0.5rem;">Ta bort</button>
+    `;
+    container.appendChild(div);
+  });
+}
+renderPresents();
   function toggleDarkMode() {
-    const isDark = document.body.classList.toggle("dark-mode");
-    const label = document.getElementById("modeLabel");
-    label.textContent = isDark ? "🌙 Dark" : "🌞 Light";
+  const isDark = document.body.classList.toggle("dark-mode");
+  const label = document.getElementById("modeLabel");
+  const switchElement = document.querySelector(".switch-mode");
+  if (isDark) {
+    label.textContent = "🌙 Dark";
+    switchElement.style.background = "#333";
+  } else {
+    label.textContent = "🌞 Light";
+    switchElement.style.background = "#ccc";
   }
+}
 function submitGuestMessage() {
   const message = document.getElementById('guestMessage').value;
   if (message.trim()) {
