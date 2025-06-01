@@ -96,14 +96,7 @@
       border: 2px solid var(--accent);
     }
     .cornelia-info {
-      position: fixed;
-      top: 20px;
-      right: 20px;
-      background-color: #fff8fb;
-      border: 2px solid #ff69b4;
-      border-radius: 10px;
-      padding: 1.5rem;
-      max-width: 320px;
+      max-width: 400px;
       font-size: 1rem;
       box-shadow: 0 0 6px #ff69b4;
       z-index: 5;
@@ -126,7 +119,7 @@
 <button id="toggleMode" onclick="toggleDarkMode()">🌗 Mörkt läge: Av</button>
 
 <!-- Admin-inloggning -->
-<div id="adminLogin">
+<div id="adminLogin" style="position: fixed; bottom: 20px; left: 20px; background: white; border: 2px solid var(--accent); padding: 1rem; border-radius: 10px; box-shadow: 0 0 6px var(--accent); z-index: 10;">
   <label for="adminPass"><strong>🔐 Admin lösenord</strong></label><br>
   <input type="password" id="adminPass" placeholder="Lösenord">
   <button onclick="checkPassword()">Logga in</button>
@@ -212,12 +205,15 @@
 
   document.querySelectorAll('.checkbox-wrapper input[type="checkbox"]').forEach(function(checkbox) {
     checkbox.addEventListener('change', function() {
+      const present = checkbox.closest('.present');
       if (checkbox.checked) {
-        checkbox.closest('.present').style.opacity = "0.5";
+        present.style.opacity = "0.5";
         checkbox.nextElementSibling.textContent = "Vald (anonym)";
+        document.body.appendChild(present);
       } else {
-        checkbox.closest('.present').style.opacity = "1";
+        present.style.opacity = "1";
         checkbox.nextElementSibling.textContent = "Jag köper denna";
+        document.body.insertBefore(present, document.querySelector(".cornelia-info"));
       }
     });
   });
