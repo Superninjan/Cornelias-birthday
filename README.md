@@ -109,6 +109,16 @@
       z-index: 5;
     }
   </style>
+<script>
+  window.onload = function () {
+    if (!sessionStorage.getItem("presentUser")) {
+      let namn = prompt("Vem är du som spanar på present till Cornelia?");
+      if (namn && namn.trim() !== "") {
+        sessionStorage.setItem("presentUser", namn.trim());
+      }
+    }
+  };
+</script>
 </head>
 <body>
 
@@ -183,5 +193,34 @@
   </div>
 </div>
 
+<script>
+  function toggleDarkMode() {
+    document.body.classList.toggle("dark-mode");
+    const btn = document.getElementById("toggleMode");
+    btn.textContent = document.body.classList.contains("dark-mode") ? "🌗 Mörkt läge: På" : "🌗 Mörkt läge: Av";
+  }
+
+  function checkPassword() {
+    const input = document.getElementById("adminPass").value;
+    if (input === "cornelia123") {
+      document.getElementById("adminPanel")?.style?.display = "block";
+      document.getElementById("loginError").textContent = "";
+    } else {
+      document.getElementById("loginError").textContent = "Fel lösenord";
+    }
+  }
+
+  document.querySelectorAll('.checkbox-wrapper input[type="checkbox"]').forEach(function(checkbox) {
+    checkbox.addEventListener('change', function() {
+      if (checkbox.checked) {
+        checkbox.closest('.present').style.opacity = "0.5";
+        checkbox.nextElementSibling.textContent = "Vald (anonym)";
+      } else {
+        checkbox.closest('.present').style.opacity = "1";
+        checkbox.nextElementSibling.textContent = "Jag köper denna";
+      }
+    });
+  });
+</script>
 </body>
 </html>
