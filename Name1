@@ -15,11 +15,47 @@
       background-color: #fff0f5;
       margin: 0;
       padding: 1rem;
+      transition: background-color 0.3s ease, color 0.3s ease;
     }
 
     body.dark-mode {
-      background-color: var(--background-dark);
+      background-color: #121212;
       color: var(--text-dark);
+    }
+
+    body.dark-mode .cornelia-info,
+    body.dark-mode .guest-note div,
+    body.dark-mode .suggestion-note div,
+    body.dark-mode .additional-suggestion div,
+    body.dark-mode #adminLogin,
+    body.dark-mode #adminPanel,
+    body.dark-mode .present {
+      background-color: #2a2a2a;
+      color: var(--text-dark);
+      border-color: #555;
+    }
+
+    body.dark-mode button {
+      background-color: #444 !important;
+      color: var(--text-dark) !important;
+    }
+
+    body.dark-mode input,
+    body.dark-mode textarea {
+      background-color: #333;
+      color: var(--text-dark);
+      border-color: #666;
+    }
+
+    body.dark-mode .cornelia-info,
+    body.dark-mode .guest-note div,
+    body.dark-mode .suggestion-note div,
+    body.dark-mode .additional-suggestion div,
+    body.dark-mode #adminLogin,
+    body.dark-mode #adminPanel {
+      background-color: #1e1e1e;
+      color: var(--text-dark);
+      border-color: #555;
     }
 
     .switch-container {
