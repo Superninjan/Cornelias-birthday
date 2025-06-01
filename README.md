@@ -1,9 +1,18 @@
+<!DOCTYPE html>
 <html lang="sv">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Cornelias Presentlista</title>
   <style>
+    .switch-container {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      display: flex;
+      align-items: center;
+      z-index: 10;
+    }
     .switch-mode {
       position: fixed;
       top: 20px;
@@ -148,10 +157,13 @@
 <body>
 
 <!-- Dark Mode-knapp -->
-<label class="switch-mode">
-  <input type="checkbox" id="darkToggle" onchange="toggleDarkMode()">
-  <span class="slider"></span>
-</label>
+<div class="switch-container">
+  <label class="switch-mode">
+    <input type="checkbox" id="darkToggle" onchange="toggleDarkMode()">
+    <span class="slider"></span>
+  </label>
+  <span id="modeLabel" style="margin-left: 10px; font-weight: bold; color: var(--accent);">Dark Mode: Off</span>
+</div>
 
 <!-- Admin-inloggning -->
 <div id="adminLogin" style="position: fixed; bottom: 20px; right: 20px; background: white; border: 2px solid var(--accent); padding: 0.5rem; border-radius: 10px; box-shadow: 0 0 6px var(--accent); z-index: 10; width: 200px; height: auto; max-height: 150px; overflow: hidden; font-size: 0.85rem;">
@@ -225,7 +237,9 @@
   function toggleDarkMode() {
   document.body.classList.toggle("dark-mode");
   const checkbox = document.getElementById("darkToggle");
+  const label = document.getElementById("modeLabel");
   checkbox.checked = document.body.classList.contains("dark-mode");
+  label.textContent = checkbox.checked ? "Dark Mode: On" : "Dark Mode: Off";
 }
 
   function checkPassword() {
@@ -264,6 +278,9 @@
           const namn = namnInput.value.trim();
           const buyerName = namn ? namn : 'anonym';
           label.textContent = `Vald (${buyerName})`;
+label.style.color = 'green';
+present.style.border = '2px solid green';
+present.style.backgroundColor = '#eaffea';
 label.style.color = 'green';
           checkbox.disabled = true;
           saveToLocal(present.querySelector('strong').textContent, buyerName);
