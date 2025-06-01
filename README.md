@@ -5,20 +5,37 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>🎂 Cornelias 4-årskalas - Presentlista 🎁</title>
   <style>
+    :root {
+      --accent: #ff69b4;
+      --background-light: #fff0f6;
+      --background-dark: #1a1a1a;
+      --text-light: #222;
+      --text-dark: #eee;
+    }
+
     body {
       font-family: 'Comic Sans MS', cursive, sans-serif;
-      background-color: #fff0f6;
+      background-color: var(--background-light);
       background-image: url('https://www.transparenttextures.com/patterns/stardust.png');
       background-repeat: repeat;
+      color: var(--text-light);
       margin: 0;
       padding: 2rem;
+      transition: all 0.3s ease;
     }
+
+    body.dark-mode {
+      background-color: var(--background-dark);
+      color: var(--text-dark);
+    }
+
     h1 {
       text-align: center;
-      color: #ff69b4;
+      color: var(--accent);
       font-size: 2.5rem;
       text-shadow: 1px 1px 3px #fff;
     }
+
     .intro {
       text-align: center;
       font-size: 1.3rem;
@@ -28,48 +45,54 @@
       border-radius: 10px;
       max-width: 500px;
       margin-inline: auto;
-      box-shadow: 0 0 8px #ff69b4;
+      box-shadow: 0 0 8px var(--accent);
     }
+
     .present {
       background-color: #fff8fb;
       border-radius: 14px;
       padding: 1rem;
       margin: 1.5rem auto;
       max-width: 600px;
-      box-shadow: 0 0 10px #ff69b4;
+      box-shadow: 0 0 10px var(--accent);
       display: flex;
       flex-direction: column;
       gap: 0.8rem;
       transition: all 0.3s ease;
     }
+
     .present strong {
       font-size: 1.2rem;
-      color: #ff69b4;
+      color: var(--accent);
     }
+
     .present img.preview {
       width: 100%;
       max-height: 160px;
       object-fit: contain;
       border-radius: 10px;
-      border: 2px solid #ff69b4;
+      border: 2px solid var(--accent);
     }
+
     .checkbox-wrapper {
       display: flex;
       align-items: center;
       gap: 1rem;
       padding: 0.5rem;
       background: rgba(255, 255, 255, 0.8);
-      border: 2px dashed #ff69b4;
+      border: 2px dashed var(--accent);
       border-radius: 10px;
     }
+
     .checkbox-wrapper input[type='checkbox'] {
       width: 25px;
       height: 25px;
-      accent-color: #ff69b4;
+      accent-color: var(--accent);
     }
+
     .buy-link {
       text-align: center;
-      background-color: #ff69b4;
+      background-color: var(--accent);
       color: #fff;
       padding: 0.4rem 1rem;
       border-radius: 8px;
@@ -78,9 +101,41 @@
       display: inline-block;
       width: fit-content;
     }
+
+    #adminLogin {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: white;
+      border: 2px solid var(--accent);
+      padding: 1rem;
+      border-radius: 10px;
+      box-shadow: 0 0 6px var(--accent);
+    }
+
+    #toggleMode {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      background-color: white;
+      border: 2px solid var(--accent);
+      padding: 0.5rem 1rem;
+      border-radius: 10px;
+      cursor: pointer;
+      font-weight: bold;
+    }
   </style>
 </head>
 <body>
+  <button id="toggleMode" onclick="toggleDarkMode()">🌗 Mörkt läge: Av</button>
+
+  <div id="adminLogin">
+    <label for="adminPass"><strong>🔐 Admin lösenord</strong></label><br>
+    <input type="password" id="adminPass" placeholder="Lösenord">
+    <button onclick="checkPassword()">Logga in</button>
+    <p id="loginError" style="color:red;"></p>
+  </div>
+
   <h1>🎉 Cornelias 4-års Presentlista 🎉</h1>
   <div class="intro">
     Välkommen till Cornelias kalaslista! Hon fyller 4 år 🎂 Välj gärna en present här nedan och kryssa i när du tänkt köpa den 🎁
@@ -109,7 +164,7 @@
   </div>
 
   <div style="text-align:center; margin-top: 2rem;">
-    <button onclick="window.print()" style="font-size: 1rem; background-color: #ff69b4; color: white; padding: 0.6rem 1rem; border: none; border-radius: 8px; cursor: pointer;">
+    <button onclick="window.print()" style="font-size: 1rem; background-color: var(--accent); color: white; padding: 0.6rem 1rem; border: none; border-radius: 8px; cursor: pointer;">
       🖨️ Skriv ut presentlistan
     </button>
   </div>
@@ -126,6 +181,23 @@
         card.style.opacity = "1";
         card.style.order = "0";
         label.textContent = "Jag köper denna";
+      }
+    }
+
+    function toggleDarkMode() {
+      const body = document.body;
+      const isDark = body.classList.toggle('dark-mode');
+      document.getElementById('toggleMode').textContent = isDark ? '🌞 Mörkt läge: På' : '🌗 Mörkt läge: Av';
+    }
+
+    function checkPassword() {
+      const pass = document.getElementById('adminPass').value;
+      const error = document.getElementById('loginError');
+      if (pass === 'cornelia123') {
+        alert("Inloggning lyckades – adminfunktioner kommer snart!");
+        error.textContent = '';
+      } else {
+        error.textContent = 'Fel lösenord';
       }
     }
   </script>
