@@ -6,14 +6,15 @@
   <title>Presenter till Cornelias kalas</title>
   <style>
     :root {
-      --bg-color: url('https://cdn.pixabay.com/photo/2014/11/09/08/06/stars-523811_1280.jpg');
+      --bg-image: url('https://cdn.pixabay.com/photo/2013/03/01/18/58/galaxy-88610_1280.jpg');
       --text-color: #fff;
       --card-bg: rgba(255, 255, 255, 0.95);
       --accent: #ff69b4;
     }
 
     body.dark-mode {
-      --bg-color: #111;
+      --bg-image: none;
+      background-color: #111;
       --text-color: #eee;
       --card-bg: #222;
       --accent: #ffb6c1;
@@ -23,7 +24,7 @@
       font-family: 'Comic Sans MS', cursive, sans-serif;
       margin: 0;
       padding: 1rem;
-      background: var(--bg-color) no-repeat center center fixed;
+      background: var(--bg-image) no-repeat center center fixed;
       background-size: cover;
       color: var(--text-color);
     }
@@ -48,6 +49,24 @@
       padding: 1rem;
       margin-bottom: 1.5rem;
       box-shadow: 0 0 10px var(--accent);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .present-content {
+      flex: 1 1 70%;
+    }
+
+    .present-controls {
+      flex: 1 1 20%;
+      text-align: right;
+    }
+
+    .present input[type='checkbox'] {
+      transform: scale(1.5);
+      margin-left: 10px;
     }
 
     .booked {
@@ -89,6 +108,17 @@
       border-radius: 8px;
     }
 
+    .buy-link {
+      display: inline-block;
+      margin-top: 0.5rem;
+      color: #fff;
+      background-color: var(--accent);
+      padding: 0.3rem 0.6rem;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
     #toggleMode {
       position: fixed;
       top: 20px;
@@ -105,6 +135,17 @@
     @media (max-width: 600px) {
       body {
         padding: 1rem;
+      }
+
+      .present {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .present-controls {
+        text-align: left;
+        width: 100%;
+        margin-top: 0.5rem;
       }
 
       #adminLogin {
@@ -142,6 +183,7 @@
       <input type="text" id="presentDesc" placeholder="Kategori (t.ex. LEGO, pyssel, kläder)">
       <input type="text" id="presentPrice" placeholder="Pris i kr">
       <input type="url" id="presentImg" placeholder="Bildlänk (valfritt)">
+      <input type="url" id="presentLink" placeholder="Länk till butik (valfritt)">
       <button type="submit">Lägg till present</button>
     </form>
   </div>
@@ -161,6 +203,7 @@
           desc: 'LEGO',
           price: '299',
           img: 'https://m.media-amazon.com/images/I/71sFCDzN6bL._AC_SL1500_.jpg',
+          link: 'https://www.prisjakt.nu/',
           booked: false
         },
         {
@@ -168,6 +211,7 @@
           desc: 'Badleksak',
           price: '49',
           img: 'https://www.partyhallen.se/images/0.81337700_1662979626_badanka-rosa-med-glitter.jpg',
+          link: '',
           booked: false
         }
       ];
@@ -178,16 +222,23 @@
       presents.forEach((p, i) => {
         const div = document.createElement('div');
         div.className = 'present' + (p.booked ? ' booked' : '');
+
         div.innerHTML = `
-          <strong>${p.name}</strong><br/>
-          <em>${p.desc}</em><br/>
-          ${p.price ? `<p>Pris: ${p.price} kr</p>` : ''}
-          ${p.img ? `<img src="${p.img}" class="preview" alt="${p.name}" />` : ''}<br/>
-          <label>
-            <input type="checkbox" ${p.booked ? 'checked disabled' : ''} onchange="bookPresent(${i})" />
-            ${p.booked ? 'Bokad' : 'Jag köper denna'}
-          </label>
+          <div class="present-content">
+            <strong>${p.name}</strong><br/>
+            <em>${p.desc}</em><br/>
+            ${p.price ? `<p>Pris: ${p.price} kr</p>` : ''}
+            ${p.img ? `<img src="${p.img}" class="preview" alt="${p.name}" />` : ''}
+            ${p.link ? `<br/><a class="buy-link" href="${p.link}" target="_blank">📦 Hitta produkten</a>` : ''}
+          </div>
+          <div class="present-controls">
+            <label>
+              <input type="checkbox" ${p.booked ? 'checked disabled' : ''} onchange="bookPresent(${i})" />
+              ${p.booked ? 'Bokad' : 'Jag köper denna'}
+            </label>
+          </div>
         `;
+
         presentList.appendChild(div);
       });
     }
@@ -203,8 +254,9 @@
       const desc = document.getElementById('presentDesc').value.trim();
       const price = document.getElementById('presentPrice').value.trim();
       const img = document.getElementById('presentImg').value.trim();
+      const link = document.getElementById('presentLink').value.trim();
       if (name) {
-        presents.push({ name, desc, price, img, booked: false });
+        presents.push({ name, desc, price, img, link, booked: false });
         saveAndRender();
         addForm.reset();
       }
