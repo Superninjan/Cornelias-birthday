@@ -110,3 +110,50 @@
     }
   </style>
 </head>
+<body>
+
+<!-- Fyra nya presenter -->
+<div class="present">
+  <strong>Ficklampa med stjärnmotiv</strong>
+  <em>Kategori: Utelek</em>
+  <p>Pris: 79 kr</p>
+  <img class="preview" src="https://m.media-amazon.com/images/I/71pLMPdRUwL._AC_SL1500_.jpg" alt="Ficklampa med stjärnmotiv">
+  <div class="checkbox-wrapper">
+    <input type="checkbox">
+    <label>Jag köper denna</label>
+  </div>
+</div>
+
+<div class="present">
+  <strong>Stora bokstavsmagneter</strong>
+  <em>Kategori: Bokstäver</em>
+  <p>Pris: 129 kr</p>
+  <img class="preview" src="https://m.media-amazon.com/images/I/81DdnD2A+PL._AC_SL1500_.jpg" alt="Bokstavsmagneter">
+  <div class="checkbox-wrapper">
+    <input type="checkbox">
+    <label>Jag köper denna</label>
+  </div>
+</div>
+
+<div class="present">
+  <strong>Rymdpysselbok</strong>
+  <em>Kategori: Böcker</em>
+  <p>Pris: 59 kr</p>
+  <img class="preview" src="https://m.media-amazon.com/images/I/81DOqDQujqL._AC_SL1500_.jpg" alt="Rymdpysselbok">
+  <div class="checkbox-wrapper">
+    <input type="checkbox">
+    <label>Jag köper denna</label>
+  </div>
+</div>
+
+<div class="present">
+  <strong>Rosa hopprep med glitter</strong>
+  <em>Kategori: Utelek</em>
+  <p>Pris: 49 kr</p>
+  <img class="preview" src="https://m.media-amazon.com/images/I/61c0t7jPgiL._AC_SL1200_.jpg" alt="Rosa hopprep med glitter">
+  <div class="checkbox-wrapper">
+    <input type="checkbox">
+    <label>Jag köper denna</label>
+  </div>
+</div>
+
