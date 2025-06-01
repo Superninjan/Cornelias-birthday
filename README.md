@@ -120,25 +120,25 @@
   <div class="presenter-container">
     <h2 style="color: var(--accent); text-align: center; margin-bottom: 1rem;">🎁 Presentlista</h2>
     <div class="present">
-      <h3>Ficklampa med stjärnmotiv</h3>
-      <p><em>Kategori:</em> Utelek<br><strong>Pris:</strong> 79 kr</p>
-      <img src="https://via.placeholder.com/150x100?text=Ficklampa" alt="Ficklampa med stjärnmotiv" style="width: 100%; max-width: 300px;">
-    </div>
+  <h3 contenteditable="true">$1</h3>
+  $1
+  <button onclick="removePresent(this)" style="background-color: #e74c3c; color: white; border: none; padding: 0.3rem 0.5rem; border-radius: 5px; cursor: pointer; margin-top: 0.5rem;">Ta bort</button>
+</div>
     <div class="present">
-      <h3>Stora bokstavsmagneter</h3>
-      <p><em>Kategori:</em> Bokstäver<br><strong>Pris:</strong> 129 kr</p>
-      <img src="https://via.placeholder.com/150x100?text=Bokstavsmagneter" alt="Bokstavsmagneter" style="width: 100%; max-width: 300px;">
-    </div>
+  <h3 contenteditable="true">$1</h3>
+  $1
+  <button onclick="this.parentElement.remove()" style="background-color: #e74c3c; color: white; border: none; padding: 0.3rem 0.5rem; border-radius: 5px; cursor: pointer; margin-top: 0.5rem;">Ta bort</button>
+</div>
     <div class="present">
-      <h3>Rymdpysselbok</h3>
-      <p><em>Kategori:</em> Böcker<br><strong>Pris:</strong> 59 kr</p>
-      <img src="https://via.placeholder.com/150x100?text=Rymdpysselbok" alt="Rymdpysselbok" style="width: 100%; max-width: 300px;">
-    </div>
+  <h3 contenteditable="true">$1</h3>
+  $1
+  <button onclick="this.parentElement.remove()" style="background-color: #e74c3c; color: white; border: none; padding: 0.3rem 0.5rem; border-radius: 5px; cursor: pointer; margin-top: 0.5rem;">Ta bort</button>
+</div>
   </div>
   <div class="cornelia-container">
     <h2 style="color: var(--accent); text-align: center; margin-bottom: 1rem;">💖 Cornelia gillar</h2>
     <div class="cornelia-info" style="border: 2px solid var(--accent); padding: 1rem; border-radius: 10px; background-color: #fff0f5;">
-      <ul>
+      <ul contenteditable="true">
         <li>🌌 Rymden</li>
         <li>📚 Böcker</li>
         <li>🔠 Bokstäver</li>
@@ -146,8 +146,8 @@
         <li>🏃‍♀️ Utelekar</li>
         <li>🌸 Färgen rosa (men allt går bra)</li>
       </ul>
-      <p><strong>Storlek kläder:</strong> 104</p>
-      <p><em>Vi gillar även ärvda saker – allt behöver inte vara nytt 🧸</em></p>
+      <p contenteditable="true"><strong>Storlek kläder:</strong> 104</p>
+      <p contenteditable="true"><em>Vi gillar även ärvda saker – allt behöver inte vara nytt 🧸</em></p>
     </div>
   </div>
   <div class="guest-note" style="flex: 1; max-width: 500px; margin-top: 2rem;">
@@ -164,6 +164,15 @@
       <label for="suggestionMessage" style="display: block; margin-bottom: 0.5rem; font-weight: bold;">Jag vill föreslå:</label>
       <textarea id="suggestionMessage" rows="3" style="width: 100%; padding: 0.5rem; border-radius: 5px; border: 1px solid #ccc;"></textarea>
       <button onclick="submitSuggestion()" style="margin-top: 0.5rem; background-color: var(--accent); color: white; border: none; padding: 0.5rem 1rem; border-radius: 5px; cursor: pointer;">Skicka</button>
+    </div>
+  </div>
+
+  <div class="additional-suggestion" style="flex: 1; max-width: 500px; margin-top: 2rem;">
+    <h2 style="color: var(--accent); text-align: center;">✏️ Förslag att lägga till på listan</h2>
+    <div style="background: #fffaf0; border: 2px dashed var(--accent); padding: 1rem; border-radius: 10px;">
+      <label for="addToListSuggestion" style="display: block; margin-bottom: 0.5rem; font-weight: bold;">Ditt förslag:</label>
+      <textarea id="addToListSuggestion" rows="3" style="width: 100%; padding: 0.5rem; border-radius: 5px; border: 1px solid #ccc;"></textarea>
+      <button onclick="submitAddToListSuggestion()" style="margin-top: 0.5rem; background-color: var(--accent); color: white; border: none; padding: 0.5rem 1rem; border-radius: 5px; cursor: pointer;">Skicka</button>
     </div>
   </div>
 </div>
@@ -245,11 +254,29 @@ function addPresent() {
   const image = document.getElementById("adminAddImage").value.trim();
 
   if (name && category && price && image) {
-    const container = document.querySelector(".presenter-container");
-    const div = document.createElement("div");
-    div.className = "present";
-    div.innerHTML = `
-      <h3>${name}</h3>
+    if (confirm(`Lägg till denna present?
+
+Namn: ${name}
+Kategori: ${category}
+Pris: ${price}`)) {
+      const container = document.querySelector(".presenter-container");
+      const div = document.createElement("div");
+      div.className = "present";
+      div.innerHTML = `
+        <h3>${name}</h3>
+        <p><em>Kategori:</em> ${category}<br><strong>Pris:</strong> ${price}</p>
+        <img src="${image}" alt="${name}" style="width: 100%; max-width: 300px;">
+      `;
+      container.appendChild(div);
+      document.getElementById("adminAddName").value = "";
+      document.getElementById("adminAddCategory").value = "";
+      document.getElementById("adminAddPrice").value = "";
+      document.getElementById("adminAddImage").value = "";
+    }
+  } else {
+    alert("Fyll i alla fält.");
+  }
+}</h3>
       <p><em>Kategori:</em> ${category}<br><strong>Pris:</strong> ${price}</p>
       <img src="${image}" alt="${name}" style="width: 100%; max-width: 300px;">
     `;
@@ -266,6 +293,22 @@ function addPresent() {
     document.getElementById("adminAdd").value = "";
   } else {
     alert("Fyll i ett namn.");
+  }
+}
+function submitAddToListSuggestion() {
+  const suggestion = document.getElementById('addToListSuggestion').value;
+  if (suggestion.trim()) {
+    alert(`Tack för ditt tilläggsförslag:
+
+"${suggestion}"`);
+    document.getElementById('addToListSuggestion').value = '';
+  } else {
+    alert('Skriv ett förslag innan du skickar.');
+  }
+}
+function removePresent(button) {
+  if (confirm("Är du säker på att du vill ta bort denna present?")) {
+    button.parentElement.remove();
   }
 }
 </script>
