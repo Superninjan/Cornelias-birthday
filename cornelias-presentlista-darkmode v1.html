@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cornelias Presentlista</title>
+  <style>
+    :root {
+      --accent: #ff69b4;
+      --background-dark: #1e1e1e;
+      --text-dark: #f3f3f3;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #fff0f5;
+      margin: 0;
+      padding: 1rem;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    body.dark-mode {
+      background-color: var(--background-dark);
+      color: var(--text-dark);
+    }
+
+    body.dark-mode a {
+      color: #88c0ff;
+    }
+
+    body.dark-mode a:visited {
+      color: #a0a0ff;
+    }
+
+    body.dark-mode .cornelia-info,
+    body.dark-mode .guest-note div,
+    body.dark-mode .suggestion-note div,
+    body.dark-mode .additional-suggestion div,
+    body.dark-mode #adminLogin,
+    body.dark-mode #adminPanel,
+    body.dark-mode .present {
+      background-color: #2a2a2a;
+      color: var(--text-dark);
+      border-color: #555;
+    }
+
+    body.dark-mode button {
+      background-color: #444 !important;
+      color: var(--text-dark) !important;
+    }
+
+    body.dark-mode input,
+    body.dark-mode textarea {
+      background-color: #333;
+      color: var(--text-dark);
+      border-color: #666;
+    }
+
+    .switch-container {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      display: flex;
+      align-items: center;
+      z-index: 10;
+    }
+
+    .switch-mode {
+      display: inline-block;
+      width: 60px;
+      height: 34px;
+      position: relative;
+    }
+
+    .switch-mode input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    .slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: #ccc;
+      transition: .4s;
+      border-radius: 34px;
+    }
+
+    .slider:before {
+      position: absolute;
+      content: "";
+      height: 26px;
+      width: 26px;
+      left: 4px;
+      bottom: 4px;
+      background-color: white;
+      transition: .4s;
+      border-radius: 50%;
+    }
+
+    input:checked + .slider {
+      background-color: var(--accent);
+    }
+
+    input:checked + .slider:before {
+      transform: translateX(26px);
+    }
+
+    .layout-container {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: flex-start;
+      gap: 2rem;
+      flex-wrap: wrap;
+      margin-top: 4rem;
+    }
+
+    .presenter-container {
+      flex: 1;
+      min-width: 300px;
+      max-width: 600px;
+    }
+
+    .cornelia-container {
+      flex: 0 0 400px;
+    }
+
+    @media (max-width: 900px) {
+      .layout-container {
+        flex-direction: column;
+        align-items: center;
+      }
+      .cornelia-container {
+        order: -1;
+      }
+    }
+
+    .present {
+      border: 2px solid var(--accent);
+      padding: 1rem;
+      border-radius: 10px;
+      margin-bottom: 1rem;
+      background-color: #fff;
+    }
+  </style>
+</head>
+<body>
+<!-- HEAD OCH INLEDNING FIXAD -->
+</body>
+</html>
