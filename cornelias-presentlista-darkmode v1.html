@@ -157,10 +157,35 @@
       display: block;
       margin-top: 0.5rem;
     }
+
+    #adminLogin {
+      position: fixed;
+      bottom: 20px;
+      left: 20px;
+      padding: 1rem;
+      border: 2px solid var(--accent);
+      background-color: #fff;
+      border-radius: 10px;
+      z-index: 10;
+    }
+
+    #adminLogin input[type="password"] {
+      display: block;
+      margin-bottom: 0.5rem;
+    }
   </style>
   <script>
     function toggleDarkMode() {
       document.body.classList.toggle('dark-mode');
+    }
+
+    function adminLogin() {
+      const password = document.getElementById("adminPassword").value;
+      if (password === "knodden2021") {
+        alert("Inloggning lyckades! Här skulle adminpanelen kunna visas.");
+      } else {
+        alert("Fel lösenord.");
+      }
     }
   </script>
 </head>
@@ -202,6 +227,11 @@
         <p><em>Vi gillar även ärvda saker – allt behöver inte vara nytt 🧸</em></p>
       </div>
     </div>
+  </div>
+  <div id="adminLogin">
+    <label for="adminPassword">🔐 Admin-login</label><br>
+    <input type="password" id="adminPassword" placeholder="Lösenord">
+    <button onclick="adminLogin()">Logga in</button>
   </div>
 </body>
 </html>
