@@ -140,6 +140,20 @@
       box-shadow: 0 0 8px var(--accent);
     }
 
+    @keyframes confetti {
+      0% { transform: translateY(-100vh) rotate(0deg); opacity: 1; }
+      100% { transform: translateY(100vh) rotate(720deg); opacity: 0; }
+    }
+
+    .confetti {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      background-color: pink;
+      animation: confetti 4s linear infinite;
+      border-radius: 50%;
+    }
+
     @media (max-width: 600px) {
       .present {
         flex-direction: column;
@@ -164,7 +178,22 @@
     Cornelia fyller 4 år! Här kan du välja en present att köpa till henne. När du kryssar i en present så markeras den som vald. 🎁🎈🎂
   </div>
 
-  <!-- Presentlistan och adminpanel infogas här i tidigare kod -->
+  <!-- Konfetti-element -->
+  <script>
+    for (let i = 0; i < 30; i++) {
+      const confetti = document.createElement('div');
+      confetti.className = 'confetti';
+      confetti.style.left = Math.random() * 100 + 'vw';
+      confetti.style.animationDelay = Math.random() * 5 + 's';
+      confetti.style.backgroundColor = ['#ff69b4', '#ffccff', '#ffb6c1'][Math.floor(Math.random() * 3)];
+      confetti.style.width = confetti.style.height = Math.random() * 10 + 5 + 'px';
+      document.body.appendChild(confetti);
+    }
+  </script>
+  <audio autoplay hidden>
+    <source src="https://cdn.pixabay.com/download/audio/2022/08/10/audio_66e58a7995.mp3?filename=birthday-fanfare-114003.mp3" type="audio/mpeg">
+  </audio>
+
   <script>
     function toggleDarkMode() {
       const isDark = document.body.classList.toggle('dark-mode');
