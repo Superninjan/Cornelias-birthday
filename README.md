@@ -3,20 +3,22 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Presenter till Cornelias kalas</title>
+  <title>🎂 Cornelias 4-årskalas - Presentlista 🎁</title>
   <style>
     :root {
-      --bg-color: #ffe6f0;
-      --text-color: #000;
-      --card-bg: #fff0f5;
+      --bg-color: #fff0f6;
+      --text-color: #222;
+      --card-bg: #fff8fb;
       --accent: #ff69b4;
+      --checkbox-border: #ff69b4;
     }
 
     body.dark-mode {
       --bg-color: #1a1a1a;
       --text-color: #eee;
-      --card-bg: #333;
+      --card-bg: #2a2a2a;
       --accent: #ffb6c1;
+      --checkbox-border: #ffb6c1;
     }
 
     body {
@@ -25,105 +27,79 @@
       padding: 1rem;
       background-color: var(--bg-color);
       color: var(--text-color);
-      background-image: url('https://cdn.pixabay.com/photo/2013/07/18/10/56/stars-163291_1280.jpg');
-      background-size: cover;
-      background-repeat: no-repeat;
-      background-attachment: fixed;
+      background-image: url('https://www.transparenttextures.com/patterns/stardust.png');
     }
 
     h1 {
       color: var(--accent);
       text-align: center;
       font-size: 2.5rem;
-      text-shadow: 2px 2px 5px #fff;
+      text-shadow: 1px 1px 3px #fff;
     }
 
     .intro {
       text-align: center;
-      font-size: 1.2rem;
+      font-size: 1.3rem;
       margin-bottom: 2rem;
-      background-color: rgba(255, 255, 255, 0.7);
+      background-color: rgba(255, 255, 255, 0.8);
       padding: 1rem;
       border-radius: 10px;
-      display: inline-block;
+      max-width: 500px;
+      margin-inline: auto;
+      box-shadow: 0 0 8px var(--accent);
     }
 
     .present {
       background-color: var(--card-bg);
-      color: var(--text-color);
-      border-radius: 12px;
+      border-radius: 14px;
       padding: 1rem;
-      margin-bottom: 1.5rem;
-      box-shadow: 0 0 15px var(--accent);
+      margin: 1.5rem auto;
+      max-width: 600px;
+      box-shadow: 0 0 10px var(--accent);
       display: flex;
-      justify-content: space-between;
+      flex-direction: column;
+      gap: 0.8rem;
+    }
+
+    .present strong {
+      font-size: 1.2rem;
+      color: var(--accent);
+    }
+
+    .present img.preview {
+      width: 100%;
+      max-height: 160px;
+      object-fit: contain;
+      border-radius: 10px;
+      border: 2px solid var(--accent);
+    }
+
+    .present .checkbox-wrapper {
+      display: flex;
       align-items: center;
-      flex-wrap: wrap;
-      border: 3px dashed var(--accent);
-    }
-
-    .present-content {
-      flex: 1 1 70%;
-    }
-
-    .present-controls {
-      flex: 1 1 20%;
-      text-align: right;
+      gap: 1rem;
+      padding: 0.5rem;
+      background: rgba(255, 255, 255, 0.8);
+      border: 2px dashed var(--checkbox-border);
+      border-radius: 10px;
     }
 
     .present input[type='checkbox'] {
-      transform: scale(1.8);
-      margin-left: 10px;
-    }
-
-    .booked {
-      background-color: rgba(255, 182, 193, 0.5);
-      color: #555;
-      text-decoration: line-through;
-    }
-
-    #adminSection, #adminLogin {
-      background-color: var(--card-bg);
-      color: var(--text-color);
-      padding: 1rem;
-      border-radius: 12px;
-      margin-top: 2rem;
-      box-shadow: 0 0 8px var(--accent);
-    }
-
-    #adminLogin {
-      position: fixed;
-      top: 20px;
-      right: 20px;
-      width: 220px;
-    }
-
-    input, button {
-      width: 100%;
-      margin-top: 0.5rem;
-      padding: 0.5rem;
-      font-size: 1rem;
-      border-radius: 6px;
-      border: 1px solid #ccc;
-    }
-
-    .preview {
-      width: 100%;
-      max-height: 150px;
-      object-fit: contain;
-      margin-top: 0.5rem;
-      border-radius: 8px;
+      width: 25px;
+      height: 25px;
+      accent-color: var(--accent);
     }
 
     .buy-link {
-      display: inline-block;
-      margin-top: 0.5rem;
-      color: #fff;
+      text-align: center;
       background-color: var(--accent);
-      padding: 0.3rem 0.6rem;
+      color: #fff;
+      padding: 0.4rem 1rem;
       border-radius: 8px;
       text-decoration: none;
       font-weight: bold;
+      display: inline-block;
+      width: fit-content;
     }
 
     #toggleMode {
@@ -132,12 +108,13 @@
       left: 20px;
       background-color: var(--card-bg);
       color: var(--text-color);
-      padding: 0.5rem 1rem;
+      padding: 0.4rem 1rem;
       border-radius: 10px;
-      border: none;
+      border: 2px solid var(--accent);
       font-weight: bold;
       cursor: pointer;
-      box-shadow: 0 0 8px var(--accent);
+      box-shadow: 0 0 6px var(--accent);
+      z-index: 1000;
     }
 
     @keyframes confetti {
@@ -152,53 +129,60 @@
       background-color: pink;
       animation: confetti 4s linear infinite;
       border-radius: 50%;
-    }
-
-    @media (max-width: 600px) {
-      .present {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-      .present-controls {
-        text-align: left;
-        width: 100%;
-        margin-top: 0.5rem;
-      }
-      #adminLogin, #toggleMode {
-        position: static;
-        margin-top: 1rem;
-      }
+      z-index: 0;
     }
   </style>
 </head>
 <body>
-  <button id="toggleMode" onclick="toggleDarkMode()">🌓 Mörkt läge: Av</button>
-  <h1>🎀 Presenter till Cornelias 4-årskalas 🎀</h1>
+  <button id="toggleMode" onclick="toggleDarkMode()">🕶️ Mörkt läge: Av</button>
+
+  <h1>🎉 Cornelias 4-års Presentlista 🎉</h1>
   <div class="intro">
-    Cornelia fyller 4 år! Här kan du välja en present att köpa till henne. När du kryssar i en present så markeras den som vald. 🎁🎈🎂
+    Välkommen till Cornelias kalaslista! Hon fyller 4 år 🎂 Välj gärna en present här nedan och kryssa i när du tänkt köpa den 🎁
   </div>
 
-  <!-- Konfetti-element -->
+  <div class="present">
+    <strong>LEGO Friends Hus</strong>
+    <em>Kategori: LEGO</em>
+    <p>Pris: 299 kr</p>
+    <img class="preview" src="https://m.media-amazon.com/images/I/71sFCDzN6bL._AC_SL1500_.jpg" alt="LEGO Friends Hus">
+    <a class="buy-link" href="https://www.prisjakt.nu/" target="_blank">🔗 Hitta produkten</a>
+    <div class="checkbox-wrapper">
+      <input type="checkbox" id="lego">
+      <label for="lego">Jag köper denna</label>
+    </div>
+  </div>
+
+  <div class="present">
+    <strong>Rosa badanka med glitter</strong>
+    <em>Kategori: Badleksak</em>
+    <p>Pris: 49 kr</p>
+    <img class="preview" src="https://www.partyhallen.se/images/0.81337700_1662979626_badanka-rosa-med-glitter.jpg" alt="Badanka">
+    <div class="checkbox-wrapper">
+      <input type="checkbox" id="anka">
+      <label for="anka">Jag köper denna</label>
+    </div>
+  </div>
+
   <script>
-    for (let i = 0; i < 30; i++) {
-      const confetti = document.createElement('div');
-      confetti.className = 'confetti';
-      confetti.style.left = Math.random() * 100 + 'vw';
-      confetti.style.animationDelay = Math.random() * 5 + 's';
-      confetti.style.backgroundColor = ['#ff69b4', '#ffccff', '#ffb6c1'][Math.floor(Math.random() * 3)];
-      confetti.style.width = confetti.style.height = Math.random() * 10 + 5 + 'px';
-      document.body.appendChild(confetti);
+    for (let i = 0; i < 40; i++) {
+      const c = document.createElement('div');
+      c.className = 'confetti';
+      c.style.left = Math.random() * 100 + 'vw';
+      c.style.animationDelay = Math.random() * 5 + 's';
+      c.style.backgroundColor = ['#ff69b4', '#ffccff', '#ffb6c1'][Math.floor(Math.random() * 3)];
+      c.style.width = c.style.height = Math.random() * 10 + 5 + 'px';
+      document.body.appendChild(c);
+    }
+
+    function toggleDarkMode() {
+      const isDark = document.body.classList.toggle('dark-mode');
+      document.getElementById('toggleMode').textContent = isDark ? '🌙 Mörkt läge: På' : '🕶️ Mörkt läge: Av';
     }
   </script>
+
   <audio autoplay hidden>
     <source src="https://cdn.pixabay.com/download/audio/2022/08/10/audio_66e58a7995.mp3?filename=birthday-fanfare-114003.mp3" type="audio/mpeg">
   </audio>
-
-  <script>
-    function toggleDarkMode() {
-      const isDark = document.body.classList.toggle('dark-mode');
-      document.getElementById('toggleMode').textContent = isDark ? '🌞 Mörkt läge: På' : '🌓 Mörkt läge: Av';
-    }
-  </script>
 </body>
 </html>
