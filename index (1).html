@@ -1,4 +1,4 @@
-html lang="sv">
+<html lang="sv">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -12,7 +12,7 @@ html lang="sv">
 
     body {
       font-family: Arial, sans-serif;
-      font-size: 18px;
+      font-size: 20px;
       background-color: #fff0f5;
       margin: 0;
       padding: 1rem;
@@ -21,7 +21,7 @@ html lang="sv">
     }
 
     h1, h2, h3 {
-      font-size: 1.8em;
+      font-size: 2em;
     }
 
     body.dark-mode {
@@ -110,25 +110,29 @@ html lang="sv">
       position: relative;
     }
 
-    .balloons {
+    .balloons, .unicorn, .cake {
       position: absolute;
-      top: -20px;
+      z-index: 1;
+    }
+
+    .balloons {
+      top: -30px;
       right: -40px;
-      width: 60px;
+      width: 80px;
+      transform: rotate(-10deg);
     }
 
     .unicorn {
-      position: absolute;
-      top: 20px;
-      left: -40px;
-      width: 60px;
+      top: 40px;
+      left: -50px;
+      width: 70px;
+      transform: rotate(8deg);
     }
 
     .cake {
-      position: absolute;
-      bottom: -30px;
-      right: 10px;
-      width: 60px;
+      bottom: -40px;
+      right: 20px;
+      width: 70px;
     }
 
     @media (max-width: 900px) {
@@ -147,6 +151,8 @@ html lang="sv">
       border-radius: 10px;
       margin-bottom: 1rem;
       background-color: #fff;
+      position: relative;
+      z-index: 2;
     }
 
     #adminLogin {
