@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="sv">
 <head>
   <meta charset="UTF-8" />
@@ -9,7 +10,6 @@
       --background-dark: #1e1e1e;
       --text-dark: #f3f3f3;
     }
-
     body {
       font-family: Arial, sans-serif;
       background-color: #fff0f5;
@@ -18,17 +18,14 @@
       transition: background-color 0.3s ease, color 0.3s ease;
       overflow-x: hidden;
     }
-
     body.dark-mode {
       background-color: var(--background-dark);
       color: var(--text-dark);
     }
-
     .dark-mode .postit {
       background-color: #444;
       color: var(--text-dark);
     }
-
     .switch-container {
       position: fixed;
       top: 20px;
@@ -37,20 +34,17 @@
       display: flex;
       align-items: center;
     }
-
     .switch-mode {
       position: relative;
       display: inline-block;
       width: 60px;
       height: 34px;
     }
-
     .switch-mode input {
       opacity: 0;
       width: 0;
       height: 0;
     }
-
     .slider {
       position: absolute;
       cursor: pointer;
@@ -62,7 +56,6 @@
       transition: .4s;
       border-radius: 34px;
     }
-
     .slider:before {
       position: absolute;
       content: "";
@@ -74,15 +67,12 @@
       transition: .4s;
       border-radius: 50%;
     }
-
     input:checked + .slider {
       background-color: var(--accent);
     }
-
     input:checked + .slider:before {
       transform: translateX(26px);
     }
-
     .layout-container {
       display: flex;
       flex-direction: row;
@@ -92,17 +82,14 @@
       flex-wrap: wrap;
       margin-top: 4rem;
     }
-
     .presenter-container {
       flex: 1;
       min-width: 300px;
       max-width: 600px;
     }
-
     .cornelia-container {
       flex: 0 0 400px;
     }
-
     @media (max-width: 900px) {
       .layout-container {
         flex-direction: column;
@@ -112,7 +99,6 @@
         order: -1;
       }
     }
-
     .present {
       border: 2px solid var(--accent);
       padding: 1rem;
@@ -120,7 +106,6 @@
       margin-bottom: 1rem;
       background-color: #fff;
     }
-
     #adminLogin {
       position: fixed;
       bottom: 20px;
@@ -131,20 +116,17 @@
       border-radius: 10px;
       z-index: 10;
     }
-
     .notes-section {
       margin-top: 2rem;
       display: flex;
       flex-direction: column;
       align-items: center;
     }
-
     .postit-wrapper {
       display: flex;
       flex-direction: column;
       align-items: center;
     }
-
     .postit {
       width: 100%;
       max-width: 600px;
@@ -156,7 +138,6 @@
       font-family: 'Patrick Hand', cursive;
       box-shadow: 2px 2px 8px rgba(0,0,0,0.2);
     }
-
     .postit-wrapper .postit:nth-of-type(1) { background-color: #fffacd; }
     .postit-wrapper .postit:nth-of-type(2) { background-color: #e0ffff; }
     .postit-wrapper .postit:nth-of-type(3) { background-color: #ffe4e1; }
@@ -169,7 +150,6 @@
       body.classList.toggle('dark-mode');
       label.textContent = body.classList.contains('dark-mode') ? '🌙 Dark' : '🌞 Light';
     }
-
     function adminLogin() {
       const password = document.getElementById("adminPassword").value;
       alert(password === "knodden2021" ? "Inloggning lyckades! Här skulle adminpanelen kunna visas." : "Fel lösenord.");
@@ -178,7 +158,6 @@
 </head>
 <body>
   <h1 style="text-align: center; margin-top: 100px;">🎉 Välkommen till Cornelias Presentlista!</h1>
-
   <div class="switch-container">
     <label class="switch-mode">
       <input type="checkbox" onchange="toggleDarkMode()">
