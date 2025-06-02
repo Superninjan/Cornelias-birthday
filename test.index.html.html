@@ -50,228 +50,228 @@
     }
 
     .balloon:nth-of-type(1) {
-      left: 10%; background-color: #ff69b4; animation-delay: 0s;
-    }
-    .balloon:nth-of-type(2) {
-      left: 30%; background-color: #87ceeb; animation-delay: 2s;
-    }
-    .balloon:nth-of-type(3) {
-      left: 70%; background-color: #ffff99; animation-delay: 4s;
-    }
-
-    @keyframes float {
-      0% { transform: translateY(0); }
-      50% { transform: translateY(-30px); }
-      100% { transform: translateY(0); }
-    }
-
-    .switch-container {
-      position: fixed;
-      top: 20px;
-      left: 20px;
-      z-index: 100;
-      display: flex;
-      align-items: center;
-    }
-
-    .switch-mode {
-      position: relative;
-      display: inline-block;
-      width: 60px;
-      height: 34px;
-    }
-
-    .switch-mode input {
-      opacity: 0;
-      width: 0;
-      height: 0;
-    }
-
-    .slider {
-      position: absolute;
-      cursor: pointer;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background-color: #ccc;
-      transition: .4s;
-      border-radius: 34px;
-    }
-
-    .slider:before {
-      position: absolute;
-      content: "";
-      height: 26px;
-      width: 26px;
-      left: 4px;
-      bottom: 4px;
-      background-color: white;
-      transition: .4s;
-      border-radius: 50%;
-    }
-
-    input:checked + .slider {
-      background-color: var(--accent);
-    }
-
-    input:checked + .slider:before {
-      transform: translateX(26px);
-    }
-
-    .layout-container {
-      display: flex;
-      flex-direction: row;
-      justify-content: center;
-      align-items: flex-start;
-      gap: 2rem;
-      flex-wrap: wrap;
-      margin-top: 4rem;
-    }
-
-    .presenter-container {
-      flex: 1;
-      min-width: 300px;
-      max-width: 600px;
-    }
-
-    .cornelia-container {
-      flex: 0 0 400px;
-    }
-
-    @media (max-width: 900px) {
+        left: 10%; background-color: #ff69b4; animation-delay: 0s;
+      }
+      .balloon:nth-of-type(2) {
+        left: 30%; background-color: #87ceeb; animation-delay: 2s;
+      }
+      .balloon:nth-of-type(3) {
+        left: 70%; background-color: #ffff99; animation-delay: 4s;
+      }
+  
+      @keyframes float {
+        0% { transform: translateY(0); }
+        50% { transform: translateY(-30px); }
+        100% { transform: translateY(0); }
+      }
+  
+      .switch-container {
+        position: fixed;
+        top: 20px;
+        left: 20px;
+        z-index: 100;
+        display: flex;
+        align-items: center;
+      }
+  
+      .switch-mode {
+        position: relative;
+        display: inline-block;
+        width: 60px;
+        height: 34px;
+      }
+  
+      .switch-mode input {
+        opacity: 0;
+        width: 0;
+        height: 0;
+      }
+  
+      .slider {
+        position: absolute;
+        cursor: pointer;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: #ccc;
+        transition: .4s;
+        border-radius: 34px;
+      }
+  
+      .slider:before {
+        position: absolute;
+        content: "";
+        height: 26px;
+        width: 26px;
+        left: 4px;
+        bottom: 4px;
+        background-color: white;
+        transition: .4s;
+        border-radius: 50%;
+      }
+  
+      input:checked + .slider {
+        background-color: var(--accent);
+      }
+  
+      input:checked + .slider:before {
+        transform: translateX(26px);
+      }
+  
       .layout-container {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: flex-start;
+        gap: 2rem;
+        flex-wrap: wrap;
+        margin-top: 4rem;
+      }
+  
+      .presenter-container {
+        flex: 1;
+        min-width: 300px;
+        max-width: 600px;
+      }
+  
+      .cornelia-container {
+        flex: 0 0 400px;
+      }
+  
+      @media (max-width: 900px) {
+        .layout-container {
+          flex-direction: column;
+          align-items: center;
+        }
+        .cornelia-container {
+          order: -1;
+        }
+      }
+  
+      .present {
+        border: 2px solid var(--accent);
+        padding: 1rem;
+        border-radius: 10px;
+        margin-bottom: 1rem;
+        background-color: #fff;
+      }
+  
+      #adminLogin {
+        position: fixed;
+        bottom: 20px;
+        left: 20px;
+        padding: 1rem;
+        border: 2px solid var(--accent);
+        background-color: #fff;
+        border-radius: 10px;
+        z-index: 10;
+      }
+  
+      .notes-section {
+        margin-top: 2rem;
+        display: flex;
         flex-direction: column;
         align-items: center;
       }
-      .cornelia-container {
-        order: -1;
+  
+      .postit-wrapper {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
       }
-    }
-
-    .present {
-      border: 2px solid var(--accent);
-      padding: 1rem;
-      border-radius: 10px;
-      margin-bottom: 1rem;
-      background-color: #fff;
-    }
-
-    #adminLogin {
-      position: fixed;
-      bottom: 20px;
-      left: 20px;
-      padding: 1rem;
-      border: 2px solid var(--accent);
-      background-color: #fff;
-      border-radius: 10px;
-      z-index: 10;
-    }
-
-    .notes-section {
-      margin-top: 2rem;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-
-    .postit-wrapper {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-
-    .postit {
-      width: 100%;
-      max-width: 600px;
-      height: 80px;
-      padding: 0.5rem;
-      margin-bottom: 1rem;
-      border-radius: 6px;
-      border: 1px solid #ccc;
-      font-family: 'Patrick Hand', cursive;
-      box-shadow: 2px 2px 8px rgba(0,0,0,0.2);
-    }
-
-    .postit-wrapper .postit:nth-of-type(1) { background-color: #fffacd; }
-    .postit-wrapper .postit:nth-of-type(2) { background-color: #e0ffff; }
-    .postit-wrapper .postit:nth-of-type(3) { background-color: #ffe4e1; }
-  </style>
-  <link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap" rel="stylesheet">
-  <script>
-    function toggleDarkMode() {
-      const body = document.body;
-      const label = document.getElementById('modeLabel');
-      body.classList.toggle('dark-mode');
-      label.textContent = body.classList.contains('dark-mode') ? '🌙 Dark' : '🌞 Light';
-    }
-
-    function adminLogin() {
-      const password = document.getElementById("adminPassword").value;
-      alert(password === "knodden2021" ? "Inloggning lyckades! Här skulle adminpanelen kunna visas." : "Fel lösenord.");
-    }
-  </script>
-</head>
-<body>
-  <div class="balloon"></div>
-  <div class="balloon"></div>
-  <div class="balloon"></div>
-  <div class="switch-container">
-    <label class="switch-mode">
-      <input type="checkbox" onchange="toggleDarkMode()">
-      <span class="slider"></span>
-    </label>
-    <span id="modeLabel" style="margin-left: 10px;">🌞 Light</span>
-  </div>
-  <div class="layout-container">
-    <div class="presenter-container">
-      <h2>🎁 Presentlista</h2>
-      <div class="present">
-        <div class="title">LEGO Friends Hus</div>
-        <div class="category">Kategori: LEGO</div>
-        <div class="price">Pris: 299 kr</div>
-        <img src="https://upload.wikimedia.org/wikipedia/commons/3/3a/LEGO_logo.svg" alt="LEGO Friends Hus" style="width: 100px;">
+  
+      .postit {
+        width: 100%;
+        max-width: 600px;
+        height: 80px;
+        padding: 0.5rem;
+        margin-bottom: 1rem;
+        border-radius: 6px;
+        border: 1px solid #ccc;
+        font-family: 'Patrick Hand', cursive;
+        box-shadow: 2px 2px 8px rgba(0,0,0,0.2);
+      }
+  
+      .postit-wrapper .postit:nth-of-type(1) { background-color: #fffacd; }
+      .postit-wrapper .postit:nth-of-type(2) { background-color: #e0ffff; }
+      .postit-wrapper .postit:nth-of-type(3) { background-color: #ffe4e1; }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap" rel="stylesheet">
+    <script>
+      function toggleDarkMode() {
+        const body = document.body;
+        const label = document.getElementById('modeLabel');
+        body.classList.toggle('dark-mode');
+        label.textContent = body.classList.contains('dark-mode') ? '🌙 Dark' : '🌞 Light';
+      }
+  
+      function adminLogin() {
+        const password = document.getElementById("adminPassword").value;
+        alert(password === "knodden2021" ? "Inloggning lyckades! Här skulle adminpanelen kunna visas." : "Fel lösenord.");
+      }
+    </script>
+  </head>
+  <body>
+    <div class="balloon"></div>
+    <div class="balloon"></div>
+    <div class="balloon"></div>
+    <div class="switch-container">
+      <label class="switch-mode">
+        <input type="checkbox" onchange="toggleDarkMode()">
+        <span class="slider"></span>
+      </label>
+      <span id="modeLabel" style="margin-left: 10px;">🌞 Light</span>
+    </div>
+    <div class="layout-container">
+      <div class="presenter-container">
+        <h2>🎁 Presentlista</h2>
+        <div class="present">
+          <div class="title">LEGO Friends Hus</div>
+          <div class="category">Kategori: LEGO</div>
+          <div class="price">Pris: 299 kr</div>
+          <img src="https://upload.wikimedia.org/wikipedia/commons/3/3a/LEGO_logo.svg" alt="LEGO Friends Hus" style="width: 100px;">
+        </div>
+        <div class="present">
+          <div class="title">Rosa badanka med glitter</div>
+          <div class="category">Kategori: Badleksak</div>
+          <div class="price">Pris: 49 kr</div>
+          <img src="https://upload.wikimedia.org/wikipedia/commons/6/6c/Rubber_duck.svg" alt="Rosa badanka med glitter" style="width: 100px;">
+        </div>
+  
+        <div class="notes-section postit-wrapper">
+          <h3>📝 Jag tänkte köpa</h3>
+          <textarea class="postit" placeholder="Skriv vad du tänkt köpa här..."></textarea>
+          <button>Skicka</button>
+        </div>
+  
+        <div class="notes-section postit-wrapper">
+          <h3>💡 Förslag</h3>
+          <textarea class="postit" placeholder="Har du ett presentförslag?"></textarea>
+          <button>Skicka</button>
+        </div>
       </div>
-      <div class="present">
-        <div class="title">Rosa badanka med glitter</div>
-        <div class="category">Kategori: Badleksak</div>
-        <div class="price">Pris: 49 kr</div>
-        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6c/Rubber_duck.svg" alt="Rosa badanka med glitter" style="width: 100px;">
-      </div>
-
-      <div class="notes-section postit-wrapper">
-        <h3>📝 Jag tänkte köpa</h3>
-        <textarea class="postit" placeholder="Skriv vad du tänkt köpa här..."></textarea>
-        <button>Skicka</button>
-      </div>
-
-      <div class="notes-section postit-wrapper">
-        <h3>💡 Förslag</h3>
-        <textarea class="postit" placeholder="Har du ett presentförslag?"></textarea>
-        <button>Skicka</button>
+  
+      <div class="cornelia-container">
+        <h2>💖 Cornelia gillar</h2>
+        <div class="cornelia-info present">
+          <ul>
+            <li>🌌 Rymden</li>
+            <li>📚 Böcker</li>
+            <li>🔠 Bokstäver</li>
+            <li>🎨 Pysselsaker</li>
+            <li>🏃‍♀️ Utelekar</li>
+            <li>🌸 Färgen rosa (men allt går bra)</li>
+          </ul>
+          <p><strong>Storlek kläder:</strong> 104</p>
+          <p><em>Vi gillar även ärvda saker – allt behöver inte vara nytt 🧸</em></p>
+        </div>
       </div>
     </div>
-
-    <div class="cornelia-container">
-      <h2>💖 Cornelia gillar</h2>
-      <div class="cornelia-info present">
-        <ul>
-          <li>🌌 Rymden</li>
-          <li>📚 Böcker</li>
-          <li>🔠 Bokstäver</li>
-          <li>🎨 Pysselsaker</li>
-          <li>🏃‍♀️ Utelekar</li>
-          <li>🌸 Färgen rosa (men allt går bra)</li>
-        </ul>
-        <p><strong>Storlek kläder:</strong> 104</p>
-        <p><em>Vi gillar även ärvda saker – allt behöver inte vara nytt 🧸</em></p>
-      </div>
+    <div id="adminLogin">
+      <label for="adminPassword">🔐 Admin-login</label><br>
+      <input type="password" id="adminPassword" placeholder="Lösenord">
+      <button onclick="adminLogin()">Logga in</button>
     </div>
-  </div>
-  <div id="adminLogin">
-    <label for="adminPassword">🔐 Admin-login</label><br>
-    <input type="password" id="adminPassword" placeholder="Lösenord">
-    <button onclick="adminLogin()">Logga in</button>
-  </div>
-</body>
-</html>
+  </body>
+  </html>
