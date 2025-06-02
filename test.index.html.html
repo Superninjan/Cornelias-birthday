@@ -182,6 +182,12 @@
       align-items: center;
     }
 
+    .postit-wrapper {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
     .postit {
       width: 100%;
       max-width: 600px;
@@ -194,9 +200,9 @@
       box-shadow: 2px 2px 8px rgba(0,0,0,0.2);
     }
 
-    .postit:nth-of-type(1) { background-color: #fffacd; }
-    .postit:nth-of-type(2) { background-color: #e0ffff; }
-    .postit:nth-of-type(3) { background-color: #ffe4e1; }
+    .postit-wrapper .postit:nth-of-type(1) { background-color: #fffacd; }
+    .postit-wrapper .postit:nth-of-type(2) { background-color: #e0ffff; }
+    .postit-wrapper .postit:nth-of-type(3) { background-color: #ffe4e1; }
   </style>
   <link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap" rel="stylesheet">
   <script>
@@ -204,20 +210,12 @@
       const body = document.body;
       const label = document.getElementById('modeLabel');
       body.classList.toggle('dark-mode');
-      if (body.classList.contains('dark-mode')) {
-        label.textContent = '🌙 Dark';
-      } else {
-        label.textContent = '🌞 Light';
-      }
+      label.textContent = body.classList.contains('dark-mode') ? '🌙 Dark' : '🌞 Light';
     }
 
     function adminLogin() {
       const password = document.getElementById("adminPassword").value;
-      if (password === "knodden2021") {
-        alert("Inloggning lyckades! Här skulle adminpanelen kunna visas.");
-      } else {
-        alert("Fel lösenord.");
-      }
+      alert(password === "knodden2021" ? "Inloggning lyckades! Här skulle adminpanelen kunna visas." : "Fel lösenord.");
     }
   </script>
 </head>
@@ -248,13 +246,13 @@
         <img src="https://example.com/duck.jpg" alt="Rosa badanka med glitter" style="width: 100px;">
       </div>
 
-      <div class="notes-section">
+      <div class="notes-section postit-wrapper">
         <h3>📝 Jag tänkte köpa</h3>
         <textarea class="postit" placeholder="Skriv vad du tänkt köpa här..."></textarea>
         <button>Skicka</button>
       </div>
 
-      <div class="notes-section">
+      <div class="notes-section postit-wrapper">
         <h3>💡 Förslag</h3>
         <textarea class="postit" placeholder="Har du ett presentförslag?"></textarea>
         <button>Skicka</button>
@@ -283,4 +281,4 @@
     <button onclick="adminLogin()">Logga in</button>
   </div>
 </body>
-</html
+</html>
