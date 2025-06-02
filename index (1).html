@@ -1,9 +1,7 @@
-
-<!DOCTYPE html>
 <html lang="sv">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Cornelias Presentlista</title>
   <style>
     :root {
@@ -11,49 +9,41 @@
       --background-dark: #1e1e1e;
       --text-dark: #f3f3f3;
     }
-
     body {
       font-family: Arial, sans-serif;
       background-color: #fff0f5;
       margin: 0;
       padding: 1rem;
       transition: background-color 0.3s ease, color 0.3s ease;
+      overflow-x: hidden;
     }
-
     body.dark-mode {
       background-color: var(--background-dark);
       color: var(--text-dark);
     }
-
-    .dark-mode .cornelia-info,
-    .dark-mode .present,
-    .dark-mode textarea,
-    .dark-mode input,
-    .dark-mode #adminLogin {
-      background-color: #2a2a2a;
-      color: #f3f3f3;
+    .dark-mode .postit {
+      background-color: #444;
+      color: var(--text-dark);
     }
-
     .switch-container {
       position: fixed;
       top: 20px;
       left: 20px;
       z-index: 100;
+      display: flex;
+      align-items: center;
     }
-
     .switch-mode {
       position: relative;
       display: inline-block;
       width: 60px;
       height: 34px;
     }
-
     .switch-mode input {
       opacity: 0;
       width: 0;
       height: 0;
     }
-
     .slider {
       position: absolute;
       cursor: pointer;
@@ -65,7 +55,6 @@
       transition: .4s;
       border-radius: 34px;
     }
-
     .slider:before {
       position: absolute;
       content: "";
@@ -77,104 +66,137 @@
       transition: .4s;
       border-radius: 50%;
     }
-
     input:checked + .slider {
       background-color: var(--accent);
     }
-
     input:checked + .slider:before {
       transform: translateX(26px);
     }
-
     .layout-container {
       display: flex;
-      flex-wrap: wrap;
+      flex-direction: row;
       justify-content: center;
+      align-items: flex-start;
       gap: 2rem;
-      margin-top: 80px;
+      flex-wrap: wrap;
+      margin-top: 4rem;
     }
-
-    .presenter-container, .cornelia-container {
+    .presenter-container {
       flex: 1;
-      max-width: 500px;
+      min-width: 300px;
+      max-width: 600px;
     }
-
+    .cornelia-container {
+      flex: 0 0 400px;
+    }
+    @media (max-width: 900px) {
+      .layout-container {
+        flex-direction: column;
+        align-items: center;
+      }
+      .cornelia-container {
+        order: -1;
+      }
+    }
     .present {
       border: 2px solid var(--accent);
-      border-radius: 10px;
       padding: 1rem;
+      border-radius: 10px;
       margin-bottom: 1rem;
-      background: #fff;
+      background-color: #fff;
     }
-
-    .present img {
-      max-width: 100px;
-      display: block;
-      margin-top: 0.5rem;
-    }
-
     #adminLogin {
       position: fixed;
       bottom: 20px;
       left: 20px;
-      border: 2px solid var(--accent);
-      background: #fff;
       padding: 1rem;
+      border: 2px solid var(--accent);
+      background-color: #fff;
       border-radius: 10px;
-      z-index: 50;
+      z-index: 10;
     }
-
     .notes-section {
       margin-top: 2rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
-
-    .notes-section textarea {
+    .postit-wrapper {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .postit {
       width: 100%;
+      max-width: 600px;
       height: 80px;
-      margin-bottom: 0.5rem;
+      padding: 0.5rem;
+      margin-bottom: 1rem;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      font-family: 'Patrick Hand', cursive;
+      box-shadow: 2px 2px 8px rgba(0,0,0,0.2);
     }
+    .postit-wrapper .postit:nth-of-type(1) { background-color: #fffacd; }
+    .postit-wrapper .postit:nth-of-type(2) { background-color: #e0ffff; }
+    .postit-wrapper .postit:nth-of-type(3) { background-color: #ffe4e1; }
   </style>
+  <link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap" rel="stylesheet">
+  <script>
+    function toggleDarkMode() {
+      const body = document.body;
+      const label = document.getElementById('modeLabel');
+      body.classList.toggle('dark-mode');
+      label.textContent = body.classList.contains('dark-mode') ? '🌙 Dark' : '🌞 Light';
+    }
+    function adminLogin() {
+      const password = document.getElementById("adminPassword").value;
+      alert(password === "knodden2021" ? "Inloggning lyckades! Här skulle adminpanelen kunna visas." : "Fel lösenord.");
+    }
+  </script>
 </head>
 <body>
+  <h1 style="text-align: center; margin-top: 100px;">🎉 Välkommen till Cornelias Presentlista!</h1>
   <div class="switch-container">
     <label class="switch-mode">
-      <input type="checkbox" onchange="document.body.classList.toggle('dark-mode')">
+      <input type="checkbox" onchange="toggleDarkMode()">
       <span class="slider"></span>
     </label>
+    <span id="modeLabel" style="margin-left: 10px;">🌞 Light</span>
   </div>
 
   <div class="layout-container">
     <div class="presenter-container">
       <h2>🎁 Presentlista</h2>
       <div class="present">
-        <div><strong>LEGO Friends Hus</strong></div>
-        <div>Kategori: LEGO</div>
-        <div>Pris: 299 kr</div>
-        <img src="https://m.media-amazon.com/images/I/81fb9xY9WgL._AC_SL1500_.jpg" alt="LEGO Friends Hus">
+        <div class="title">LEGO Friends Hus</div>
+        <div class="category">Kategori: LEGO</div>
+        <div class="price">Pris: 299 kr</div>
+        <img src="https://upload.wikimedia.org/wikipedia/commons/3/3a/LEGO_logo.svg" alt="LEGO Friends Hus" style="width: 100px;">
       </div>
       <div class="present">
-        <div><strong>Rosa badanka med glitter</strong></div>
-        <div>Kategori: Badleksak</div>
-        <div>Pris: 49 kr</div>
-        <img src="https://www.duckshop.de/media/image/product/19526/lg/glitzer-badeente-rosa.jpg" alt="Rosa badanka">
+        <div class="title">Rosa badanka med glitter</div>
+        <div class="category">Kategori: Badleksak</div>
+        <div class="price">Pris: 49 kr</div>
+        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6c/Rubber_duck.svg" alt="Rosa badanka med glitter" style="width: 100px;">
       </div>
 
-      <div class="notes-section">
+      <div class="notes-section postit-wrapper">
         <h3>📝 Jag tänkte köpa</h3>
-        <textarea placeholder="Skriv vad du tänkt köpa här..."></textarea>
-        <button onclick="alert('Tack! Meddelande mottaget.')">Skicka</button>
+        <textarea class="postit" placeholder="Skriv vad du tänkt köpa här..."></textarea>
+        <button>Skicka</button>
       </div>
 
-      <div class="notes-section">
+      <div class="notes-section postit-wrapper">
         <h3>💡 Förslag</h3>
-        <textarea placeholder="Har du ett presentförslag?"></textarea>
-        <button onclick="alert('Tack för ditt förslag!')">Skicka</button>
+        <textarea class="postit" placeholder="Har du ett presentförslag?"></textarea>
+        <button>Skicka</button>
       </div>
     </div>
 
     <div class="cornelia-container">
       <h2>💖 Cornelia gillar</h2>
-      <div class="present cornelia-info">
+      <div class="cornelia-info present">
         <ul>
           <li>🌌 Rymden</li>
           <li>📚 Böcker</li>
@@ -194,16 +216,4 @@
     <input type="password" id="adminPassword" placeholder="Lösenord">
     <button onclick="adminLogin()">Logga in</button>
   </div>
-
-  <script>
-    function adminLogin() {
-      const pw = document.getElementById('adminPassword').value;
-      if (pw === 'knodden2021') {
-        alert('Inloggning lyckades!');
-      } else {
-        alert('Fel lösenord.');
-      }
-    }
-  </script>
 </body>
-</html>
