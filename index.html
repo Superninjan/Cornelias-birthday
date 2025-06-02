@@ -1,4 +1,4 @@
-<html lang="sv">
+html lang="sv">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -9,22 +9,31 @@
       --background-dark: #1e1e1e;
       --text-dark: #f3f3f3;
     }
+
     body {
       font-family: Arial, sans-serif;
+      font-size: 18px;
       background-color: #fff0f5;
       margin: 0;
       padding: 1rem;
       transition: background-color 0.3s ease, color 0.3s ease;
       overflow-x: hidden;
     }
+
+    h1, h2, h3 {
+      font-size: 1.8em;
+    }
+
     body.dark-mode {
       background-color: var(--background-dark);
       color: var(--text-dark);
     }
+
     .dark-mode .postit {
       background-color: #444;
       color: var(--text-dark);
     }
+
     .switch-container {
       position: fixed;
       top: 20px;
@@ -33,17 +42,20 @@
       display: flex;
       align-items: center;
     }
+
     .switch-mode {
       position: relative;
       display: inline-block;
       width: 60px;
       height: 34px;
     }
+
     .switch-mode input {
       opacity: 0;
       width: 0;
       height: 0;
     }
+
     .slider {
       position: absolute;
       cursor: pointer;
@@ -55,6 +67,7 @@
       transition: .4s;
       border-radius: 34px;
     }
+
     .slider:before {
       position: absolute;
       content: "";
@@ -66,12 +79,15 @@
       transition: .4s;
       border-radius: 50%;
     }
+
     input:checked + .slider {
       background-color: var(--accent);
     }
+
     input:checked + .slider:before {
       transform: translateX(26px);
     }
+
     .layout-container {
       display: flex;
       flex-direction: row;
@@ -81,14 +97,40 @@
       flex-wrap: wrap;
       margin-top: 4rem;
     }
+
     .presenter-container {
       flex: 1;
       min-width: 300px;
       max-width: 600px;
+      position: relative;
     }
+
     .cornelia-container {
       flex: 0 0 400px;
+      position: relative;
     }
+
+    .balloons {
+      position: absolute;
+      top: -20px;
+      right: -40px;
+      width: 60px;
+    }
+
+    .unicorn {
+      position: absolute;
+      top: 20px;
+      left: -40px;
+      width: 60px;
+    }
+
+    .cake {
+      position: absolute;
+      bottom: -30px;
+      right: 10px;
+      width: 60px;
+    }
+
     @media (max-width: 900px) {
       .layout-container {
         flex-direction: column;
@@ -98,6 +140,7 @@
         order: -1;
       }
     }
+
     .present {
       border: 2px solid var(--accent);
       padding: 1rem;
@@ -105,6 +148,7 @@
       margin-bottom: 1rem;
       background-color: #fff;
     }
+
     #adminLogin {
       position: fixed;
       bottom: 20px;
@@ -115,17 +159,20 @@
       border-radius: 10px;
       z-index: 10;
     }
+
     .notes-section {
       margin-top: 2rem;
       display: flex;
       flex-direction: column;
       align-items: center;
     }
+
     .postit-wrapper {
       display: flex;
       flex-direction: column;
       align-items: center;
     }
+
     .postit {
       width: 100%;
       max-width: 600px;
@@ -137,6 +184,7 @@
       font-family: 'Patrick Hand', cursive;
       box-shadow: 2px 2px 8px rgba(0,0,0,0.2);
     }
+
     .postit-wrapper .postit:nth-of-type(1) { background-color: #fffacd; }
     .postit-wrapper .postit:nth-of-type(2) { background-color: #e0ffff; }
     .postit-wrapper .postit:nth-of-type(3) { background-color: #ffe4e1; }
@@ -149,6 +197,7 @@
       body.classList.toggle('dark-mode');
       label.textContent = body.classList.contains('dark-mode') ? '🌙 Dark' : '🌞 Light';
     }
+
     function adminLogin() {
       const password = document.getElementById("adminPassword").value;
       alert(password === "knodden2021" ? "Inloggning lyckades! Här skulle adminpanelen kunna visas." : "Fel lösenord.");
@@ -157,6 +206,7 @@
 </head>
 <body>
   <h1 style="text-align: center; margin-top: 100px;">🎉 Välkommen till Cornelias Presentlista!</h1>
+
   <div class="switch-container">
     <label class="switch-mode">
       <input type="checkbox" onchange="toggleDarkMode()">
@@ -167,6 +217,7 @@
 
   <div class="layout-container">
     <div class="presenter-container">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Balloons.svg/800px-Balloons.svg.png" alt="Balloons" class="balloons">
       <h2>🎁 Presentlista</h2>
       <div class="present">
         <div class="title">LEGO Friends Hus</div>
@@ -180,13 +231,11 @@
         <div class="price">Pris: 49 kr</div>
         <img src="https://upload.wikimedia.org/wikipedia/commons/6/6c/Rubber_duck.svg" alt="Rosa badanka med glitter" style="width: 100px;">
       </div>
-
       <div class="notes-section postit-wrapper">
         <h3>📝 Jag tänkte köpa</h3>
         <textarea class="postit" placeholder="Skriv vad du tänkt köpa här..."></textarea>
         <button>Skicka</button>
       </div>
-
       <div class="notes-section postit-wrapper">
         <h3>💡 Förslag</h3>
         <textarea class="postit" placeholder="Har du ett presentförslag?"></textarea>
@@ -195,6 +244,8 @@
     </div>
 
     <div class="cornelia-container">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/3/33/Cute-unicorn.png" alt="Unicorn" class="unicorn">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/3/3c/Birthday_cake_icon.svg" alt="Cake" class="cake">
       <h2>💖 Cornelia gillar</h2>
       <div class="cornelia-info present">
         <ul>
@@ -217,3 +268,4 @@
     <button onclick="adminLogin()">Logga in</button>
   </div>
 </body>
+</html>
